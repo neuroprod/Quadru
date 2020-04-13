@@ -27,4 +27,7 @@ public:
 	float underLegLength = 300;
 
 	float footRadius =10;
+
+	float motorHeight = 35;
+	float motorRadius = 49;
 };

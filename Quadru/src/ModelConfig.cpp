@@ -27,7 +27,7 @@ void ModelConfig::drawGui()
 	if (ui::DragFloat("hipOffsetX", &hipOffsetX, 1, 0, 200)) setDirty();
 	if (ui::DragFloat("hipOffsetZ", &hipOffsetZ, 1, 0, 200)) setDirty();
 
-	if (ui::DragFloat("upperLegLength", &hipOffsetX, 1, 0, 200)) setDirty();
-	if (ui::DragFloat("underLegLength", &hipOffsetZ, 1, 0, 200)) setDirty();
+	if (ui::DragFloat("upperLegLength", &upperLegLength, 1, 0, 200)) setDirty();
+	if (ui::DragFloat("underLegLength", &underLegLength, 1, 0, 200)) setDirty();
 	if (ui::DragFloat("footRadius", &footRadius, 1, 0, 200)) setDirty();
 }
