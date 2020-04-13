@@ -64,7 +64,7 @@ void SRenderer::draw() {
 
 
 	NDP()->mGlsl->uniform("uShadowMap", 0);
-	NDP()->mGlsl->uniform("uLightPos", mLightPos);
+	NDP()->mGlsl->uniform("uLightPos", mvLightPos);
 	NDP()->mGlsl->uniform("uShadowMatrix", shadowMatrix);
 	NDP()->mGlsl->uniform("alpha", 1.f);
 	for (auto n : model->nodes)
