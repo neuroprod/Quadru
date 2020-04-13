@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{A0FBD9BA-7A1D-4C7D-92F9-B1FB97B3FEF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui">
+      <UniqueIdentifier>{0A3628D3-001E-4DA0-8C99-C7900C064977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\include">
+      <UniqueIdentifier>{975D872D-E100-454F-BCE3-9D9D34603CD0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\lib">
+      <UniqueIdentifier>{CCFE6E01-EBBD-41DE-A436-5FE463182E42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\lib\imgui">
+      <UniqueIdentifier>{DED94E22-5998-44D5-9D8F-ACBCE6F1F775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\ImGui\src">
+      <UniqueIdentifier>{0A920499-CDAF-430B-A1E1-CB8C4484A541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simulation">
+      <UniqueIdentifier>{690e4b0d-3397-46b4-919d-f60f95c6114a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simulation\renderer">
+      <UniqueIdentifier>{704c7f91-94fe-4f3c-86ae-fd403b3bb3d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simulation\FKmodel">
+      <UniqueIdentifier>{edb252c3-3ca1-4226-b06b-ff6308d367ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\settings">
+      <UniqueIdentifier>{da71fb76-f92c-42b8-9cfb-84e64d6eae65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{feaa2f16-79ad-4748-afff-dbd8d0673db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{e25c849c-a42d-43fe-bb42-926c14a987bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simulation\nodeData">
+      <UniqueIdentifier>{f3bfb46e-0ddf-40d2-8800-496d523608df}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\QuadruApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\QuadruApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\include\CinderImGui.h">
+      <Filter>Blocks\ImGui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClCompile Include="..\blocks\ImGui\src\CinderImGui.cpp">
+      <Filter>Blocks\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_widgets.cpp">
+      <Filter>Blocks\ImGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FKNode.cpp">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\OrbitCamera.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SRenderer.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FKModel.cpp">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ModelConfig.cpp">
+      <Filter>Source Files\settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FKLeg.cpp">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Mesh.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NodeData.cpp">
+      <Filter>Source Files\simulation\nodeData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\NodeDataPool.cpp">
+      <Filter>Source Files\simulation\nodeData</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FKNode.h">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\OrbitCamera.h">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SRenderer.h">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FKModel.h">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ModelConfig.h">
+      <Filter>Source Files\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FKLeg.h">
+      <Filter>Source Files\simulation\FKmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Mesh.h">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Singleton.h">
+      <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NodeData.h">
+      <Filter>Source Files\simulation\nodeData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NodeDataPool.h">
+      <Filter>Source Files\simulation\nodeData</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\shaders\mainShader.frag.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\assets\shaders\mainShader.vert.glsl">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
