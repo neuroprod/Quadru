@@ -52,14 +52,15 @@ void main( void )
 	
 	vec4 sc = vShadowCoord;
 	vec4 ShadowCoord	= vShadowCoord / vShadowCoord.w;
-
+	
 
 	sc.z -= 0.005;
-
 	float shadow = samplePCF4x4( sc );
 	shadow =shadow*0.3+0.7;
 	
 	Color.rgb = ( Diffuse  * shadow  + Ambient )* vColor.rgb;
 	Color.a	= alpha;
+
+	
 	
 }

@@ -52,6 +52,12 @@
     <Filter Include="Source Files\simulation\nodeData">
       <UniqueIdentifier>{f3bfb46e-0ddf-40d2-8800-496d523608df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\IK">
+      <UniqueIdentifier>{15ee2636-92d3-43a5-a9ec-3a660157609d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controle">
+      <UniqueIdentifier>{fb4a37a1-f511-4a51-a34f-30563a020490}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -117,6 +123,21 @@
     <ClCompile Include="..\src\NodeDataPool.cpp">
       <Filter>Source Files\simulation\nodeData</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\IKLeg.cpp">
+      <Filter>Source Files\IK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\IKModel.cpp">
+      <Filter>Source Files\IK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Controle.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ControleLeg.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SymbolBatches.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -151,6 +172,21 @@
     </ClInclude>
     <ClInclude Include="..\src\NodeDataPool.h">
       <Filter>Source Files\simulation\nodeData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\IKModel.h">
+      <Filter>Source Files\IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\IKLeg.h">
+      <Filter>Source Files\IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Controle.h">
+      <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ControleLeg.h">
+      <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SymbolBatches.h">
+      <Filter>Source Files\simulation\renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

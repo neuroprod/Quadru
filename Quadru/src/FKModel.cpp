@@ -22,6 +22,13 @@ void FKModel::update()
 	{
 		rebuild();
 	}
+
+
+
+
+
+
+
 	root->update();
 }
 void FKModel::rebuild()
@@ -31,7 +38,7 @@ void FKModel::rebuild()
 	root->removeAllChildren();
 
 	body = FKNode::create("body", "body");
-	body->setBase(vec3(0, modelConfig->bodyY, 0));
+	body->setBase(vec3(0, 0, 0));
 	nodes.push_back(body);
 	root->addChild(body);
 

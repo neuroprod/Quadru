@@ -114,9 +114,13 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\src\Controle.cpp" />
+    <ClCompile Include="..\src\ControleLeg.cpp" />
     <ClCompile Include="..\src\FKLeg.cpp" />
     <ClCompile Include="..\src\FKModel.cpp" />
     <ClCompile Include="..\src\FKNode.cpp" />
+    <ClCompile Include="..\src\IKLeg.cpp" />
+    <ClCompile Include="..\src\IKModel.cpp" />
     <ClCompile Include="..\src\NodeData.cpp" />
     <ClCompile Include="..\src\Mesh.cpp" />
     <ClCompile Include="..\src\NodeDataPool.cpp" />
@@ -128,6 +132,7 @@
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\src\SRenderer.cpp" />
+    <ClCompile Include="..\src\SymbolBatches.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
@@ -135,9 +140,13 @@
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\Controle.h" />
+    <ClInclude Include="..\src\ControleLeg.h" />
     <ClInclude Include="..\src\FKLeg.h" />
     <ClInclude Include="..\src\FKModel.h" />
     <ClInclude Include="..\src\FKNode.h" />
+    <ClInclude Include="..\src\IKLeg.h" />
+    <ClInclude Include="..\src\IKModel.h" />
     <ClInclude Include="..\src\NodeData.h" />
     <ClInclude Include="..\src\Mesh.h" />
     <ClInclude Include="..\src\NodeDataPool.h" />
@@ -145,6 +154,7 @@
     <ClInclude Include="..\src\OrbitCamera.h" />
     <ClInclude Include="..\src\Singleton.h" />
     <ClInclude Include="..\src\SRenderer.h" />
+    <ClInclude Include="..\src\SymbolBatches.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

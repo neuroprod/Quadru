@@ -6,6 +6,8 @@
 #include "FKModel.h"
 #include "ModelConfig.h"
 #include "NodeDataPool.h"
+#include "Controle.h"
+#include "IKModel.h"
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -25,14 +27,17 @@ class QuadruApp : public App {
 	SRenderer renderer;
 	FKModelRef fkModel;
 	ModelConfigRef modelConfig;
+	ControleRef controle;
+
+	IKModel IKmodel;
 };
 
 void QuadruApp::setup()
 {
 	setWindowSize(1920, 1080);
 	setWindowPos(0, 0);
-	gl::enableVerticalSync();
-	setFrameRate(60);
+	gl::enableVerticalSync(false);
+	setFrameRate(5000);
 	ui::initialize();
 	ui::GetStyle().WindowRounding = 0.0f;
 	ui::GetStyle().ChildRounding = 0.0f;
@@ -49,11 +54,19 @@ void QuadruApp::setup()
 	NDP()->setup(modelConfig);
 	
 
-
 	fkModel = std::make_shared<FKModel>();
 	fkModel->setup(modelConfig);
 
-	renderer.setup(fkModel);
+
+
+	controle = std::make_shared<Controle>();
+	controle->setup(modelConfig);
+
+	IKmodel.setup(modelConfig, controle);
+
+
+
+	renderer.setup(fkModel, controle);
 }
 
 void QuadruApp::mouseDown(MouseEvent event)
@@ -74,12 +87,25 @@ void QuadruApp::mouseWheel(MouseEvent event)
 }
 void QuadruApp::update()
 {
-	
+	controle->update();
+	IKmodel.update();
+
+
+	fkModel->body->baseMatrix = IKmodel.bodyMatrix;
+
+
+
+	float fps = getAverageFps();
+	//console() << fps << endl;
+
 	fkModel->update();
 	renderer.update();
 
+
+	renderer.drawGui(fps);
 	renderer.camera.drawGui();
 	modelConfig->drawGui();
+	controle->drawGui();
 }
 
 void QuadruApp::draw()
