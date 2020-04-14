@@ -6,11 +6,11 @@ using namespace ci::app;
 using namespace std;
 
 
-void SRenderer::setup(FKModelRef _model,ControleRef _controle)
+void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmodel)
 {
 	model = _model;
 	controle = _controle;
-
+	IKmodel = _IKmodel;
 	symbols.setup();
 	camera.setup();
 	
@@ -66,6 +66,15 @@ void SRenderer::draw() {
 
 	startCamera();
 
+		for (auto l : IKmodel->legs)
+		{
+			gl::pushMatrices();
+			gl::translate(vec3(l->targetHip1Local.x, l->targetHip1Local.y, l->targetHip1Local.z));
+			symbols.targetBatch->draw();
+			gl::popMatrices();
+
+		}
+	
 	//////////////////////home
 	if (showHomePos) {
 		for (auto l : controle->legs)

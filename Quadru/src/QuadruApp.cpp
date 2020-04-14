@@ -29,7 +29,7 @@ class QuadruApp : public App {
 	ModelConfigRef modelConfig;
 	ControleRef controle;
 
-	IKModel IKmodel;
+	IKModelRef IKmodel;
 };
 
 void QuadruApp::setup()
@@ -37,7 +37,7 @@ void QuadruApp::setup()
 	setWindowSize(1920, 1080);
 	setWindowPos(0, 0);
 	gl::enableVerticalSync(false);
-	setFrameRate(5000);
+	setFrameRate(60);
 	ui::initialize();
 	ui::GetStyle().WindowRounding = 0.0f;
 	ui::GetStyle().ChildRounding = 0.0f;
@@ -58,15 +58,15 @@ void QuadruApp::setup()
 	fkModel->setup(modelConfig);
 
 
-
 	controle = std::make_shared<Controle>();
 	controle->setup(modelConfig);
 
-	IKmodel.setup(modelConfig, controle);
+	IKmodel = std::make_shared< IKModel>();
+	IKmodel->setup(modelConfig, controle);
 
 
 
-	renderer.setup(fkModel, controle);
+	renderer.setup(fkModel, controle, IKmodel);
 }
 
 void QuadruApp::mouseDown(MouseEvent event)
@@ -88,10 +88,10 @@ void QuadruApp::mouseWheel(MouseEvent event)
 void QuadruApp::update()
 {
 	controle->update();
-	IKmodel.update();
+	IKmodel->update();
 
 
-	fkModel->body->baseMatrix = IKmodel.bodyMatrix;
+	fkModel->body->baseMatrix = IKmodel->bodyMatrix;
 
 
 
