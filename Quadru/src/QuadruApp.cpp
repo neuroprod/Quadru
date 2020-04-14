@@ -98,7 +98,8 @@ void QuadruApp::update()
 		auto FKleg = fkModel->legs[i];
 
 		FKleg->hip1->setRotation(IKleg->angleHip1);
-	
+		FKleg->hip2->setRotation(IKleg->angleHip2);
+		FKleg->knee->setRotation(IKleg->angleKnee);
 	}
 
 

@@ -66,7 +66,8 @@ void SRenderer::draw() {
 
 	startCamera();
 	gl::drawCoordinateFrame(1000);
-		for (auto l : IKmodel->legs)
+	//hip1 resolve	
+	/*for (auto l : IKmodel->legs)
 		{
 			gl::pushMatrices();
 			gl::translate(l->targetHip1LocalFlat);
@@ -74,7 +75,19 @@ void SRenderer::draw() {
 			gl::popMatrices();
 
 		}
+	*/
+
+	//hip2_Knee resolve	
+	for (auto l : IKmodel->legs)
+	{
+	gl::pushMatrices();
+	gl::translate(vec3(l->targetHip2Local));
+	symbols.targetBatch->draw();
+	gl::popMatrices();
+
+	}
 	
+
 	//////////////////////home
 	if (showHomePos) {
 		for (auto l : controle->legs)

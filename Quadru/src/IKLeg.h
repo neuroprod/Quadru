@@ -26,7 +26,13 @@ public:
 
 	glm::vec4 targetHip1Local;
 	glm::vec3 targetHip1LocalFlat;
+
+	glm::vec4 targetHip2Local;
+
 	float hipRotScale = 1;
 	bool isLeft = false;
+
 	float angleHip1 = 0;
+	float angleHip2 = 0;
+	float angleKnee = 0;
 };
