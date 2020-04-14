@@ -18,12 +18,19 @@ void IKModel::reBuild()
 
 	FR = IKLeg::create();
 	FR->setup(vec3(config->bodyLength / 2, 0, config->bodyWidth / 2), config);
+	FR->hipRotScale = -1;
+
 	FL = IKLeg::create();
 	FL->setup(vec3(config->bodyLength / 2, 0, -config->bodyWidth / 2), config);
+	FL->isLeft = true;
+	FL->hipRotScale = -1;
+
 	BR = IKLeg::create();
 	BR->setup(vec3(-config->bodyLength / 2, 0, config->bodyWidth / 2), config);
+
 	BL = IKLeg::create();
 	BL->setup(vec3(-config->bodyLength / 2, 0, -config->bodyWidth / 2), config);
+	BL->isLeft = true;
 
 	legs.push_back(FR);
 	legs.push_back(FL);
@@ -50,6 +57,7 @@ void IKModel::update()
 
 	for (int i=0; i< controle->legs.size();i++) 
 	{
+	
 		legs[i]->resolve(controle->legs[i]->targetPos, invBodyMatrix);
 	}
 }

@@ -35,6 +35,7 @@ void FKModel::rebuild()
 {
 	NDP()->clear();
 	nodes.clear();
+	legs.clear();
 	root->removeAllChildren();
 
 	body = FKNode::create("body", "body");
@@ -44,17 +45,18 @@ void FKModel::rebuild()
 
 	FRLeg = FKLeg::create();
 	FRLeg->setup("FR",body, vec3(modelConfig->bodyLength / 2, 0, modelConfig->bodyWidth / 2), modelConfig, nodes);
-
+	legs.push_back(FRLeg);
 
 	FLLeg = FKLeg::create();
 	FLLeg->setup("FL", body, vec3(modelConfig->bodyLength / 2, 0, -modelConfig->bodyWidth / 2), modelConfig, nodes);
-
+	legs.push_back(FLLeg);
 
 	BRLeg = FKLeg::create();
 	BRLeg->setup("BR", body, vec3(-modelConfig->bodyLength / 2, 0, modelConfig->bodyWidth / 2), modelConfig, nodes);
-
+	legs.push_back(BRLeg);
 
 	BLLeg = FKLeg::create();
 	BLLeg->setup("BL", body, vec3(-modelConfig->bodyLength / 2, 0, -modelConfig->bodyWidth / 2), modelConfig, nodes);
+	legs.push_back(BLLeg);
 }
 

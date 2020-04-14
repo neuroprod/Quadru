@@ -25,4 +25,5 @@ public:
 	FKLegRef BLLeg;
 
 	std::vector<FKNodeRef> nodes;
+	std::vector<FKLegRef> legs;
 };

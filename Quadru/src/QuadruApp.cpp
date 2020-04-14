@@ -92,7 +92,14 @@ void QuadruApp::update()
 
 
 	fkModel->body->baseMatrix = IKmodel->bodyMatrix;
+	for (int i = 0; i < IKmodel->legs.size() ; i++) 
+	{
+		auto IKleg = IKmodel->legs[i];
+		auto FKleg = fkModel->legs[i];
 
+		FKleg->hip1->setRotation(IKleg->angleHip1);
+	
+	}
 
 
 	float fps = getAverageFps();

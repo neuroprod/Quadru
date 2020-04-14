@@ -65,11 +65,11 @@ void SRenderer::draw() {
 	drawShadow();
 
 	startCamera();
-
+	gl::drawCoordinateFrame(1000);
 		for (auto l : IKmodel->legs)
 		{
 			gl::pushMatrices();
-			gl::translate(vec3(l->targetHip1Local.x, l->targetHip1Local.y, l->targetHip1Local.z));
+			gl::translate(l->targetHip1LocalFlat);
 			symbols.targetBatch->draw();
 			gl::popMatrices();
 

@@ -14,6 +14,9 @@ public:
 	void build();
 	void resolve(glm::vec3 target, glm::mat4 invBodyMatrix);
 
+	float PI;
+
+
 	glm::vec3 pos;
 	ModelConfigRef conf;
 
@@ -22,4 +25,8 @@ public:
 
 
 	glm::vec4 targetHip1Local;
+	glm::vec3 targetHip1LocalFlat;
+	float hipRotScale = 1;
+	bool isLeft = false;
+	float angleHip1 = 0;
 };
