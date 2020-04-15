@@ -11,5 +11,5 @@ NodeDataRef NodeData::create()
 void NodeData::setGlobalMatrix(ci::mat4 &_globalMatrix) 
 {
 	globalMatrix = _globalMatrix;
-
+	centerOfMassGlobal = _globalMatrix*centerOfMass;
 }

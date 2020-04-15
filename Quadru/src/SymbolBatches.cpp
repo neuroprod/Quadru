@@ -10,13 +10,19 @@ void SymbolBatches::setup()
 	makeHome();
 	makeTarget();
 	makeCoordinateFrame();
-	
+	makeCOF();
 }
 
 void SymbolBatches::makeFloor()
 {
 	floorBatch = gl::Batch::create(geom::Plane().size(vec2(10000, 10000)), NDP()->mGlsl);
 }
+void SymbolBatches::makeCOF() 
+{
+COFBatch= gl::Batch::create(geom::WireCube().size(20,20,20), gl::getStockShader(gl::ShaderDef().color()));
+
+}
+
 void SymbolBatches::makeCoordinateFrame() 
 {
 	struct VertexData {
@@ -55,7 +61,7 @@ void SymbolBatches::makeCoordinateFrame()
 	{
 		VertexData v1;
 		v1.position = vec3(0, 0, 0);
-		v1.color = vec3(0, 1, 1);
+		v1.color = vec3(0, 0, 1);
 		vertices.push_back(v1);
 
 		VertexData v2;

@@ -6,13 +6,14 @@
 #include "IKModel.h"
 #include "Controle.h"
 #include "SymbolBatches.h"
+#include "Resolver.h"
 class SRenderer
 {
 
 
 public:
 	SRenderer() {}
-	void setup(FKModelRef _model, ControleRef _control, IKModelRef _IKmodel);
+	void setup(FKModelRef _model, ControleRef _control, IKModelRef _IKmodel, ResolverRef _resolver);
 	void update();
 	void draw();
 	void drawGui(float fps);
@@ -26,6 +27,7 @@ public:
 
 	SymbolBatches symbols;
 	OrbitCamera camera;
+	ResolverRef resolver;
 
 	ci::gl::FboRef			mFbo;
 	ci::CameraPersp			mLightCam;
@@ -34,9 +36,9 @@ public:
 	ci::gl::Texture2dRef	mShadowMapTex;
 	int	fboSize = 2048;
 
-
-
-	bool showMesh = true;
+	bool showCenterOffMass = true;
+	bool showMass = true;
+	bool showMesh = false;
 	bool showFloor = true;
 	bool showJointSpace = true;
 

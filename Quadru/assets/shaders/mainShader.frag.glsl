@@ -56,7 +56,7 @@ void main( void )
 
 	 vec3 viewDir = normalize(uViewPos - vPosition.xyz);
     vec3 reflectDir = reflect(-lightDir, Normal	);  
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 8)*0.2;
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 2)*0.1;
 
 
 	vec4 sc = vShadowCoord;
@@ -67,7 +67,7 @@ void main( void )
 	float shadow = samplePCF4x4( sc );
 	shadow =shadow*0.3+0.7;
 	
-	Color.rgb = ( Diffuse  * shadow  + Ambient  )* vColor.rgb +spec;
+	Color.rgb = ( Diffuse  * shadow  + Ambient  )* vColor.rgb +spec*shadow;
 	Color.a	= alpha;
 
 	

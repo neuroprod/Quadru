@@ -8,6 +8,7 @@
 #include "NodeDataPool.h"
 #include "Controle.h"
 #include "IKModel.h"
+#include "Resolver.h"
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -30,6 +31,7 @@ class QuadruApp : public App {
 	ControleRef controle;
 
 	IKModelRef IKmodel;
+	ResolverRef resolver;
 };
 
 void QuadruApp::setup()
@@ -64,9 +66,9 @@ void QuadruApp::setup()
 	IKmodel = std::make_shared< IKModel>();
 	IKmodel->setup(modelConfig, controle, fkModel);
 
-
-
-	renderer.setup(fkModel, controle, IKmodel);
+	resolver = std::make_shared< Resolver>();
+	resolver->setup(fkModel);
+	renderer.setup(fkModel, controle, IKmodel, resolver);
 }
 
 void QuadruApp::mouseDown(MouseEvent event)
@@ -112,8 +114,8 @@ void QuadruApp::update()
 
 
 
-
 	fkModel->update();
+	resolver->update();
 	renderer.update();
 
 

@@ -131,6 +131,7 @@
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\src\Resolver.cpp" />
     <ClCompile Include="..\src\SRenderer.cpp" />
     <ClCompile Include="..\src\SymbolBatches.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="..\src\NodeDataPool.h" />
     <ClInclude Include="..\src\ModelConfig.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
+    <ClInclude Include="..\src\Resolver.h" />
     <ClInclude Include="..\src\Singleton.h" />
     <ClInclude Include="..\src\SRenderer.h" />
     <ClInclude Include="..\src\SymbolBatches.h" />

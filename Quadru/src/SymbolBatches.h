@@ -16,8 +16,10 @@ public:
 	void makeHome();
 	void makeCoordinateFrame();
 	void makeTarget();
+	void makeCOF();
 	ci::gl::BatchRef floorBatch;
 	ci::gl::BatchRef homeBatch;
 	ci::gl::BatchRef targetBatch;
 	ci::gl::BatchRef coordinateFrame;
+	ci::gl::BatchRef COFBatch;
 };

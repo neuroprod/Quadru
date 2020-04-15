@@ -58,6 +58,9 @@
     <Filter Include="Source Files\controle">
       <UniqueIdentifier>{fb4a37a1-f511-4a51-a34f-30563a020490}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\simulation\physics">
+      <UniqueIdentifier>{df8411b6-dc2b-40e1-8e5e-b321d9bac0f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -138,6 +141,9 @@
     <ClCompile Include="..\src\SymbolBatches.cpp">
       <Filter>Source Files\simulation\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Resolver.cpp">
+      <Filter>Source Files\simulation\physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -187,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\src\SymbolBatches.h">
       <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Resolver.h">
+      <Filter>Source Files\simulation\physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

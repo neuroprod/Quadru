@@ -6,11 +6,12 @@ using namespace ci::app;
 using namespace std;
 
 
-void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmodel)
+void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmodel,ResolverRef _resolver)
 {
 	model = _model;
 	controle = _controle;
 	IKmodel = _IKmodel;
+	resolver = _resolver;
 	symbols.setup();
 	camera.setup();
 	
@@ -54,8 +55,8 @@ void SRenderer::drawGui(float fps) {
 	ui::Checkbox("show JointSpace", &showJointSpace);
 	ui::Checkbox("show HomePos", &showHomePos);
 	ui::Checkbox("show TargetPos", &showTargetPos);
-
-
+	ui::Checkbox("show mass", &showMass);
+	ui::Checkbox("show center of mass", &showCenterOffMass);
 
 }
 ////
@@ -88,6 +89,38 @@ void SRenderer::draw() {
 
 	}
 	*/
+	if (showCenterOffMass) {
+		gl::color(1, 1, 1);
+		gl::pushMatrices();
+
+		vec4 v = resolver->centerOfMass;
+
+		gl::translate(vec3(v.x, v.y, v.z));
+		symbols.targetBatch->draw();
+		gl::scale(resolver->mass3, resolver->mass3, resolver->mass3);
+		symbols.COFBatch->draw();
+		
+		gl::popMatrices();
+	
+	}
+
+	if (showMass) {
+		gl::color(0.3, 0.3, 0.3);
+		for (auto n : model->nodes)
+		{
+			gl::pushMatrices();
+		
+			vec4 v =n->nodeData->centerOfMassGlobal;
+			
+			gl::translate(vec3(v.x,v.y,v.z));
+			gl::scale(n->nodeData->mass3, n->nodeData->mass3, n->nodeData->mass3);
+			symbols.COFBatch->draw();
+
+			gl::popMatrices();
+
+		}
+	}
+
 
 	//////////////////////home
 	if (showHomePos) {

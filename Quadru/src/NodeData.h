@@ -12,10 +12,11 @@ public:
 
 	static NodeDataRef create();
 	std::string type;
-	glm::vec3 centerOfMass = glm::vec3(0, 0, 0);
-	float mass = mass;
+	glm::vec4 centerOfMass = glm::vec4(0, 0, 0,1);
+	float mass = 0;
+	float mass3 = 0;
 	std::vector<MeshRef> meshes;
 	ci::mat4 globalMatrix;
-
+	glm::vec4 centerOfMassGlobal;
 	
 };
