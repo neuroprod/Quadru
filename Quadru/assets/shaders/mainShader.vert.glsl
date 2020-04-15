@@ -24,7 +24,7 @@ const mat4 biasMatrix = mat4( 0.5, 0.0, 0.0, 0.0,
 void main( void )
 {
 	vColor			= ciColor;
-	vPosition		= ciModelView * ciPosition;
+	vPosition		= ciModelMatrix* ciPosition;
 	vNormal			= normalize( ciNormalMatrix * ciNormal );
 	vShadowCoord	= ( biasMatrix * uShadowMatrix * ciModelMatrix ) * ciPosition;
 	gl_Position		= ciModelViewProjection * ciPosition;

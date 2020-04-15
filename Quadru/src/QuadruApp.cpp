@@ -62,7 +62,7 @@ void QuadruApp::setup()
 	controle->setup(modelConfig);
 
 	IKmodel = std::make_shared< IKModel>();
-	IKmodel->setup(modelConfig, controle);
+	IKmodel->setup(modelConfig, controle, fkModel);
 
 
 
@@ -87,6 +87,14 @@ void QuadruApp::mouseWheel(MouseEvent event)
 }
 void QuadruApp::update()
 {
+	float fps = getAverageFps();
+	renderer.drawGui(fps);
+	renderer.camera.drawGui();
+	modelConfig->drawGui();
+	controle->drawGui();
+
+
+
 	controle->update();
 	IKmodel->update();
 
@@ -103,17 +111,13 @@ void QuadruApp::update()
 	}
 
 
-	float fps = getAverageFps();
-	//console() << fps << endl;
+
 
 	fkModel->update();
 	renderer.update();
 
 
-	renderer.drawGui(fps);
-	renderer.camera.drawGui();
-	modelConfig->drawGui();
-	controle->drawGui();
+	
 }
 
 void QuadruApp::draw()

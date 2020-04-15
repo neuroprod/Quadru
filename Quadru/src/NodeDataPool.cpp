@@ -75,6 +75,12 @@ NodeDataRef NodeDataPool::getData(std::string type)
 		m->setup(geom::Capsule().radius(22).length(config->upperLegLength ).center(vec3(0,-config->upperLegLength/2,0)), vec3(0, 0, 0), baseColor, mGlsl);
 		nd->meshes.push_back(m);
 
+
+		/*MeshRef m2 = Mesh::create();
+		m2->setup(geom::Cube().size(1,1000,1000), vec3(0, 0, 0), baseColor, mGlsl);
+		nd->meshes.push_back(m2);
+		*/
+
 	
 		MeshRef motor = Mesh::create();
 		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(1,0,0)).origin(vec3( 5, 0, 0)), vec3(0, 0, 0), motorColor, mGlsl);

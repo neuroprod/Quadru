@@ -63,12 +63,28 @@ void Controle::drawGui()
 	ui::DragFloat("body rotX", &bodyRotX, 0.01, -3.1415, 3.1415);
 	ui::DragFloat("body rotY", &bodyRotY, 0.01, -3.1415, 3.1415) ;
 	ui::DragFloat("body rotZ", &bodyRotZ, 0.01, -3.1415, 3.1415) ;
-
+	if (ui::Button("resetBody")) 
+	{
+		bodyRotX = 0;
+		bodyRotY =0;
+		bodyRotZ = 0;
+		bodyX = 0;
+		bodyY = config->bodyY;
+		bodyZ = 0;
+	}
 	ui::Separator();
 	ui::DragFloat3("FR Target", &FR->targetPos[0], 1.f,-1000, 1000);
 	ui::DragFloat3("FL Target", &FL->targetPos[0], 1.f, -1000, 1000);
 
 	ui::DragFloat3("BR Target", &BR->targetPos[0], 1.f, -1000, 1000);
 	ui::DragFloat3("BL Target", &BL->targetPos[0], 1.f, -1000, 1000);
-
+	if (ui::Button("resetTargets")) 
+	{
+	
+		FR->targetPos = FR->homePos;
+		FL->targetPos = FL->homePos;
+		BR->targetPos = BR->homePos;
+		BL->targetPos = BL->homePos;
+	
+	}
 }

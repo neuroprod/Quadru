@@ -38,9 +38,9 @@ public:
 
 	bool showMesh = true;
 	bool showFloor = true;
-	bool showJointSpace = false;
+	bool showJointSpace = true;
 
 	bool showHomePos = false;
 
-	bool showTargetPos = false;
+	bool showTargetPos = true;
 };

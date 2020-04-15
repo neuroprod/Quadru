@@ -19,14 +19,14 @@ public:
 	float bodyY = 400;
 
 	float bodyLength = 500;
-	float bodyWidth = 200;
+	float bodyWidth = 100;
 
 	float hipOffsetX = 50;
 	float hipOffsetZ = 70;
 	float upperLegLength = 300;
-	float underLegLength = 300;
+	float underLegLength =300;
 
-	float footRadius =10;
+	float footRadius =15;
 
 	float motorHeight = 35;
 	float motorRadius = 49;

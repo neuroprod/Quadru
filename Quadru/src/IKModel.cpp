@@ -4,11 +4,11 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-void IKModel::setup(ModelConfigRef _config, ControleRef _controle)
+void IKModel::setup(ModelConfigRef _config, ControleRef _controle, FKModelRef _fkModel)
 {
 	config = _config;
 	controle=_controle;
-	
+	fkModel = _fkModel;
 	reBuild();
 
 }
@@ -17,19 +17,24 @@ void IKModel::reBuild()
 	legs.clear();
 
 	FR = IKLeg::create();
-	FR->setup(vec3(config->bodyLength / 2, 0, config->bodyWidth / 2), config);
-	FR->hipRotScale = -1;
+
+
+	FR->setup(fkModel->FRLeg->hip1->baseMatrix, fkModel->FRLeg->hip2->baseMatrix, config);
+	FR->hipOffsetZFlip = fkModel->FRLeg->hipOffsetZFlip;
 
 	FL = IKLeg::create();
-	FL->setup(vec3(config->bodyLength / 2, 0, -config->bodyWidth / 2), config);
+	FL->setup(fkModel->FLLeg->hip1->baseMatrix, fkModel->FLLeg->hip2->baseMatrix, config);
+	FL->hipOffsetZFlip = fkModel->FLLeg->hipOffsetZFlip;
 	FL->isLeft = true;
-	FL->hipRotScale = -1;
 
 	BR = IKLeg::create();
-	BR->setup(vec3(-config->bodyLength / 2, 0, config->bodyWidth / 2), config);
+	BR->setup(fkModel->BRLeg->hip1->baseMatrix, fkModel->BRLeg->hip2->baseMatrix, config);
+	BR->hipOffsetZFlip = fkModel->BRLeg->hipOffsetZFlip;
 
 	BL = IKLeg::create();
-	BL->setup(vec3(-config->bodyLength / 2, 0, -config->bodyWidth / 2), config);
+	BL->setup(fkModel->BLLeg->hip1->baseMatrix, fkModel->BLLeg->hip2->baseMatrix, config);
+	BL->isLeft = true;
+	BL->hipOffsetZFlip = fkModel->BLLeg->hipOffsetZFlip;
 	BL->isLeft = true;
 
 	legs.push_back(FR);
@@ -40,11 +45,7 @@ void IKModel::reBuild()
 }
 void IKModel::update()
 {
-	if (config->needsRebuild) 
-	{
-		reBuild();
-	
-	}
+
 
 	bodyMatrix = mat4();
 	bodyMatrix = glm::translate(bodyMatrix, vec3(controle->bodyX, controle->bodyY, controle->bodyZ));
@@ -57,7 +58,8 @@ void IKModel::update()
 
 	for (int i=0; i< controle->legs.size();i++) 
 	{
-	
-		legs[i]->resolve(controle->legs[i]->targetPos, invBodyMatrix);
+		vec3 target = controle->legs[i]->targetPos;
+		target.y += config->footRadius;
+		legs[i]->resolve(target, invBodyMatrix);
 	}
 }

@@ -18,10 +18,7 @@ void FKModel::setup(ModelConfigRef config) {
 }
 void FKModel::update() 
 {
-	if (modelConfig->needsRebuild)
-	{
-		rebuild();
-	}
+	
 
 
 

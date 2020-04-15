@@ -27,8 +27,8 @@ void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmode
 	fboFormat.attachment(GL_DEPTH_ATTACHMENT, mShadowMapTex);
 	mFbo = gl::Fbo::create(fboSize, fboSize, fboFormat);
 
-	mLightPos = vec3(-1000.0f, 2000.0f, -1500.0f);
-	mLightCam.setPerspective(60.0f, mFbo->getAspectRatio(), 10.f, 5000.0f);
+	mLightPos = vec3(1000.0f, 2500.0f, 1500.0f);
+	mLightCam.setPerspective(40.0f, mFbo->getAspectRatio(), 10.f, 5000.0f);
 	mLightCam.lookAt(mLightPos, vec3(0.0f));
 
 
@@ -70,7 +70,7 @@ void SRenderer::draw() {
 	/*for (auto l : IKmodel->legs)
 		{
 			gl::pushMatrices();
-			gl::translate(l->targetHip1LocalFlat);
+			gl::translate(vec3(l->targetHip1Local));
 			symbols.targetBatch->draw();
 			gl::popMatrices();
 
@@ -78,6 +78,7 @@ void SRenderer::draw() {
 	*/
 
 	//hip2_Knee resolve	
+	/*
 	for (auto l : IKmodel->legs)
 	{
 	gl::pushMatrices();
@@ -86,7 +87,7 @@ void SRenderer::draw() {
 	gl::popMatrices();
 
 	}
-	
+	*/
 
 	//////////////////////home
 	if (showHomePos) {
@@ -126,13 +127,14 @@ void SRenderer::draw() {
 	//////////////////////mesh
 	if (showMesh || showFloor) {
 		gl::ScopedTextureBind texScope(mShadowMapTex, (uint8_t)0);
-		vec3 mvLightPos = vec3(gl::getModelView() * vec4(mLightPos, 1.0f));
+	//	vec3 mvLightPos = vec3(gl::getModelView() * vec4(mLightPos, 1.0f));
 		mat4 shadowMatrix = mLightCam.getProjectionMatrix() * mLightCam.getViewMatrix();
 
 
 		NDP()->mGlsl->uniform("uShadowMap", 0);
-		NDP()->mGlsl->uniform("uLightPos", mvLightPos);
+		NDP()->mGlsl->uniform("uLightPos", mLightPos);
 		NDP()->mGlsl->uniform("uShadowMatrix", shadowMatrix);
+		NDP()->mGlsl->uniform("uViewPos", camera.mCam.getEyePoint());
 		NDP()->mGlsl->uniform("alpha", 1.f);
 		if (showFloor) {
 			gl::color(Color::gray(0.7));

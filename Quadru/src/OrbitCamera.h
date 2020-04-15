@@ -17,12 +17,12 @@ public:
 
 	ci::vec2 rotateStart;
 	ci::vec2 rotateEnd;
-	float cameraDistance = 4000;
+	float cameraDistance = 2360;
 	float targetCameraDistance = cameraDistance;
 	float dampingFactor = 0.1;
 
-	float phi = -2.72396;
-	float theta = 0.700061;
+	float phi = 0.891;
+	float theta = 1.162;
 	float fov = 30;
 	
 	float deltaTheta =0;

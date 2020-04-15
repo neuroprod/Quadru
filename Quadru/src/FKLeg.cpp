@@ -11,16 +11,16 @@ FKLegRef FKLeg::create()
 void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef modelConfig, std::vector<FKNodeRef> &nodes)
 {
 	float PI = glm::pi<float>();
-	float flip = 1;
-	if (pos.x < 0 && pos.z>0)flip = -1;
-	if (pos.x > 0 && pos.z<0)flip = -1;
+	hipOffsetZFlip = 1;
+	if (pos.x < 0 && pos.z>0)hipOffsetZFlip = -1;
+	if (pos.x > 0 && pos.z<0)hipOffsetZFlip = -1;
 
 
-	if (flip == 1)
+	if (hipOffsetZFlip == 1)
 	{
 		hip1 = FKNode::create(name + "hip1", "hip1_mirror");
 	}
-	if (flip == -1)
+	if (hipOffsetZFlip == -1)
 	{
 		hip1 = FKNode::create(name + "hip1", "hip1");
 	}
@@ -33,7 +33,7 @@ void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef mode
 	
 
 	hip2 = FKNode::create(name+"hip2", "hip2");
-	hip2->setBase(vec3(modelConfig->hipOffsetX,0 , modelConfig->hipOffsetZ*flip),vec3(0, -PI/2*flip,0));
+	hip2->setBase(vec3(modelConfig->hipOffsetX,0 , modelConfig->hipOffsetZ*hipOffsetZFlip),vec3(0, -PI/2* hipOffsetZFlip,0));
 	hip1->addChild(hip2);
 
 	knee = FKNode::create(name+"knee", "knee");

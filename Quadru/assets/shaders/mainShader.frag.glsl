@@ -8,6 +8,8 @@ in vec4 vPosition;
 in vec3 vNormal;
 in vec4 vShadowCoord;
 
+uniform vec3 uViewPos;
+
 out vec4 Color;
 
 float samplePCF4x4( vec4 sc )
@@ -43,13 +45,20 @@ float samplePCF4x4( vec4 sc )
 
 void main( void )
 {
+//todo fix+ make nice shading
 	vec3 Normal			= normalize( vNormal );
-	vec3 LightVec		= normalize( uLightPos - vPosition.xyz );
-	float NdotL			=  dot( vNormal, LightVec )*0.5 +0.5;
+	vec3 lightDir		= normalize( uLightPos - vPosition.xyz );
+	float NdotL			=  dot( vNormal, lightDir)*0.5 +0.5;
 	
 	vec3 Diffuse		= vec3( NdotL );
 	vec3 Ambient		= vec3( 0.1 );
 	
+
+	 vec3 viewDir = normalize(uViewPos - vPosition.xyz);
+    vec3 reflectDir = reflect(-lightDir, Normal	);  
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 8)*0.2;
+
+
 	vec4 sc = vShadowCoord;
 	vec4 ShadowCoord	= vShadowCoord / vShadowCoord.w;
 	
@@ -58,7 +67,7 @@ void main( void )
 	float shadow = samplePCF4x4( sc );
 	shadow =shadow*0.3+0.7;
 	
-	Color.rgb = ( Diffuse  * shadow  + Ambient )* vColor.rgb;
+	Color.rgb = ( Diffuse  * shadow  + Ambient  )* vColor.rgb +spec;
 	Color.a	= alpha;
 
 	
