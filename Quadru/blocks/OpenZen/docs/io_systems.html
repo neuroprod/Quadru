@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IO Systems &mdash; OpenZen  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C API" href="c_api.html" />
+    <link rel="prev" title="Supported Sensors" href="supported_sensors.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenZen
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with OpenZen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_sensors.html">Supported Sensors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IO Systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#silabs-usb-express">SiLabs USB Express</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-com-port">Windows COM Port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bluetooth">Bluetooth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bluetooth-low-energy">Bluetooth Low-Energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-device">Linux Device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c_api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csharp_api.html">C# API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unity_plugin.html">Unity Plugin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenZen</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>IO Systems</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/io_systems.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="io-systems">
+<span id="io-system-label"></span><h1>IO Systems<a class="headerlink" href="#io-systems" title="Permalink to this headline">¶</a></h1>
+<p>IO Systems are connecting to sensors via various data transport layers. If you use the
+<code class="docutils literal notranslate"><span class="pre">ZenClient::listSensorsAsync</span></code> method, all IO systems will list the sensor they were
+able to auto-discover and you can connect to a sensor without knowing any additional details
+on the IO system.</p>
+<p>In some case you may want to connect directly to a sensor because the sensor name is known.
+In this case, you need to also provide the name of the IO system the sensor is connected on.</p>
+<p>Furthermore, some IO systems don’t support auto-discovery of sensors and they can only be used
+with the <code class="docutils literal notranslate"><span class="pre">ZenClient::obtainSensorByName</span></code> method.</p>
+<div class="section" id="silabs-usb-express">
+<h2>SiLabs USB Express<a class="headerlink" href="#silabs-usb-express" title="Permalink to this headline">¶</a></h2>
+<p>LP-Research sensors which are configured to use the USB-mode can be connected via this IO system
+on Windows. The advantage is that the Baudrate does not need to be configured and the sensor can
+be configured via string name. This name is always the same, no matter on which USB port the sensor
+is connected or which other peripheral devices are connected.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 66%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name in OpenZen</p></td>
+<td><p>SiUsb</p></td>
+</tr>
+<tr class="row-even"><td><p>Supported Platforms</p></td>
+<td><p>Windows only</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supports auto-discovery</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example to obtain a USB connected sensor which has the name lpmscu2000573.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;SiUsb&quot;</span><span class="p">,</span> <span class="s">&quot;lpmscu2000573&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="windows-com-port">
+<h2>Windows COM Port<a class="headerlink" href="#windows-com-port" title="Permalink to this headline">¶</a></h2>
+<p>LP-Research sensors which are configured to use the COM port mode can be connected via this IO system
+on Windows. The baudrate needs to be provided with the call to <code class="docutils literal notranslate"><span class="pre">obtainSensorByName</span></code> and the sensor name
+is the COM-port named assigned to the sensor by Windows. This name can be different on different systems,
+depending how much other COM-Port devices are connected.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 64%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name in OpenZen</p></td>
+<td><p>WindowsDevice</p></td>
+</tr>
+<tr class="row-even"><td><p>Supported Platforms</p></td>
+<td><p>Windows only</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supports auto-discovery</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example to obtain a COM-Port connected sensor which is connected on the Windows COM-Port COM12 using
+a baudrate of 115200 bits per second.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;WindowsDevice&quot;</span><span class="p">,</span> <span class="s">&quot;COM12&quot;</span><span class="p">,</span> <span class="mi">115200</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bluetooth">
+<h2>Bluetooth<a class="headerlink" href="#bluetooth" title="Permalink to this headline">¶</a></h2>
+<p>The Bluetooth IO system can be used to connect to bluetooth sensors like the LP-Research LPMS-B2 sensor.
+To be able to connect to any bluetooth sensor, it first needs to be paired via the operating system’s
+device manager. Then it can be auto-discovered by OpenZen or directly connected via the bluetooth address
+of the sensor.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name in OpenZen</p></td>
+<td><p>Bluetooth</p></td>
+</tr>
+<tr class="row-even"><td><p>Supported Platforms</p></td>
+<td><p>Windows, Linux, Mac</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supports auto-discovery</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example to obtain a bluetooth sensor which has the bluetooth address 00:11:22:33:FF:EE:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;Bluetooth&quot;</span><span class="p">,</span> <span class="s">&quot;00:11:22:33:FF:EE&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bluetooth-low-energy">
+<h2>Bluetooth Low-Energy<a class="headerlink" href="#bluetooth-low-energy" title="Permalink to this headline">¶</a></h2>
+<p>The Bluetooth Low-Energy IO system can be used to connect to bluetooth sensors like the LP-Research LPMS-B2 sensor
+via the low-enery mode of Bluetooth.
+To be able to connect to any bluetooth sensor, it first needs to be paired via the operating system’s
+device manager. Then it can be auto-discovered by OpenZen or directly connected via the bluetooth address
+of the sensor.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name in OpenZen</p></td>
+<td><p>Ble</p></td>
+</tr>
+<tr class="row-even"><td><p>Supported Platforms</p></td>
+<td><p>Windows, Linux, Mac</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supports auto-discovery</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example to obtain a bluetooth sensor which has the bluetooth address 00:11:22:33:FF:EE:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;Ble&quot;</span><span class="p">,</span> <span class="s">&quot;00:11:22:33:FF:EE&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux-device">
+<h2>Linux Device<a class="headerlink" href="#linux-device" title="Permalink to this headline">¶</a></h2>
+<p>Allows to connect to a sensor which is connected via the USB-mode on Linux systems. It is the
+equivalent of the SiUsb IO system on Linux in that it needs not baud rate configuration and only
+the device’s name to connect.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name in OpenZen</p></td>
+<td><p>LinuxDevice</p></td>
+</tr>
+<tr class="row-even"><td><p>Supported Platforms</p></td>
+<td><p>Linux</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supports auto-discovery</p></td>
+<td><p>yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example to obtain a bluetooth sensor which has the name lpmscu2000573</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;LinuxDevice&quot;</span><span class="p">,</span> <span class="s">&quot;lpmscu2000573&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c_api.html" class="btn btn-neutral float-right" title="C API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="supported_sensors.html" class="btn btn-neutral float-left" title="Supported Sensors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, LP-Research Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

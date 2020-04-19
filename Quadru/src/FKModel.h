@@ -3,6 +3,7 @@
 #include "FKNode.h"
 #include "FKLeg.h"
 #include "ModelConfig.h";
+#include "PhysicsWorld.h";
 class FKModel;
 typedef std::shared_ptr<FKModel> FKModelRef;
 
@@ -10,11 +11,11 @@ class FKModel
 {
 public:
 	FKModel() {};
-	void setup(ModelConfigRef config);
+	void setup(ModelConfigRef config, PhysicsWorldRef _world);
 	void rebuild();
 	void update();
-
-	ModelConfigRef modelConfig;
+	PhysicsWorldRef world;
+	ModelConfigRef config;
 	FKNodeRef root;
 	FKNodeRef body;
 
@@ -26,4 +27,7 @@ public:
 
 	std::vector<FKNodeRef> nodes;
 	std::vector<FKLegRef> legs;
+
+
+	btMultiBody* mMultiBody;
 };

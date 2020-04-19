@@ -1,3 +1,4 @@
+#include "QuadruDefines.h"
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -8,7 +9,13 @@
 #include "NodeDataPool.h"
 #include "Controle.h"
 #include "IKModel.h"
-#include "Resolver.h"
+
+#include "PhysicsWorld.h"
+
+#ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
+#include "IMU.h"
+#endif
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -31,14 +38,20 @@ class QuadruApp : public App {
 	ControleRef controle;
 
 	IKModelRef IKmodel;
-	ResolverRef resolver;
+	
+
+	PhysicsWorldRef physicsWorld;
+
+#ifdef CONNECT_TO_ROBOT
+		IMU imu;
+#endif
 };
 
 void QuadruApp::setup()
 {
 	setWindowSize(1920, 1080);
 	setWindowPos(0, 0);
-	gl::enableVerticalSync(false);
+	gl::enableVerticalSync(true);
 	setFrameRate(60);
 	ui::initialize();
 	ui::GetStyle().WindowRounding = 0.0f;
@@ -55,9 +68,11 @@ void QuadruApp::setup()
 	
 	NDP()->setup(modelConfig);
 	
+	physicsWorld = std::make_shared<PhysicsWorld>();
+	physicsWorld->setup();
 
 	fkModel = std::make_shared<FKModel>();
-	fkModel->setup(modelConfig);
+	fkModel->setup(modelConfig, physicsWorld);
 
 
 	controle = std::make_shared<Controle>();
@@ -66,9 +81,15 @@ void QuadruApp::setup()
 	IKmodel = std::make_shared< IKModel>();
 	IKmodel->setup(modelConfig, controle, fkModel);
 
-	resolver = std::make_shared< Resolver>();
-	resolver->setup(fkModel);
-	renderer.setup(fkModel, controle, IKmodel, resolver);
+	
+
+
+
+	renderer.setup(fkModel, controle, IKmodel);
+
+#ifdef CONNECT_TO_ROBOT
+	imu.start();
+#endif
 }
 
 void QuadruApp::mouseDown(MouseEvent event)
@@ -89,18 +110,23 @@ void QuadruApp::mouseWheel(MouseEvent event)
 }
 void QuadruApp::update()
 {
+#ifdef CONNECT_TO_ROBOT
+	vec3 e = imu.getEuler();
+	console() <<e<< endl;
+
+#endif
 	float fps = getAverageFps();
 	renderer.drawGui(fps);
 	renderer.camera.drawGui();
 	modelConfig->drawGui();
 	controle->drawGui();
-
+	physicsWorld->drawGui();
 
 
 	controle->update();
 	IKmodel->update();
 
-
+	/*
 	fkModel->body->baseMatrix = IKmodel->bodyMatrix;
 	for (int i = 0; i < IKmodel->legs.size() ; i++) 
 	{
@@ -111,11 +137,16 @@ void QuadruApp::update()
 		FKleg->hip2->setRotation(IKleg->angleHip2);
 		FKleg->knee->setRotation(IKleg->angleKnee);
 	}
+	*/
+
+	physicsWorld->update();
 
 
 
 	fkModel->update();
-	resolver->update();
+	
+
+
 	renderer.update();
 
 

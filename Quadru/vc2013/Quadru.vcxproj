@@ -14,19 +14,20 @@
     <ProjectGuid>{3C269A0B-53DA-4FA0-9248-59E6E5733AB1}</ProjectGuid>
     <RootNamespace>Quadru</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -54,21 +55,22 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\cinder_master\include";..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\blocks\OpenZen\include;..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include;..\..\..\bullet3\src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>"..\..\..\cinder_master\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>"..\..\..\cinder_master\lib\msw\$(PlatformTarget)";"..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\"</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;OpenZen.lib;BulletCollision_vs2010_x64_debug.lib;BulletDynamics_vs2010_x64_debug.lib;BulletInverseDynamicsUtils_vs2010_x64_debug.lib;BulletInverseDynamics_vs2010_x64_debug.lib;LinearMath_vs2010_x64_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\bullet3\bin;..\blocks\OpenZen\libs;..\..\..\cinder_master\lib\msw\$(PlatformTarget);..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -78,13 +80,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\cinder_master\include";..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\OpenZen\include;..\..\..\bullet3\src;..\blocks\ImGui\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -93,8 +96,8 @@
       <AdditionalIncludeDirectories>"..\..\..\cinder_master\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>"..\..\..\cinder_master\lib\msw\$(PlatformTarget)\";"..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\"</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;OpenZen.lib;BulletCollision_vs2010_x64_release.lib;BulletDynamics_vs2010_x64_release.lib;BulletInverseDynamicsUtils_vs2010_x64_release.lib;BulletInverseDynamics_vs2010_x64_release.lib;LinearMath_vs2010_x64_release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\blocks\OpenZen\libs;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\;..\..\..\bullet3\bin</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
@@ -116,26 +119,32 @@
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\src\Controle.cpp" />
     <ClCompile Include="..\src\ControleLeg.cpp" />
+    <ClCompile Include="..\src\Conv.cpp" />
     <ClCompile Include="..\src\FKLeg.cpp" />
     <ClCompile Include="..\src\FKModel.cpp" />
     <ClCompile Include="..\src\FKNode.cpp" />
     <ClCompile Include="..\src\IKLeg.cpp" />
     <ClCompile Include="..\src\IKModel.cpp" />
+    <ClCompile Include="..\src\IMU.cpp" />
     <ClCompile Include="..\src\NodeData.cpp" />
     <ClCompile Include="..\src\Mesh.cpp" />
     <ClCompile Include="..\src\NodeDataPool.cpp" />
     <ClCompile Include="..\src\ModelConfig.cpp" />
     <ClCompile Include="..\src\OrbitCamera.cpp" />
+    <ClCompile Include="..\src\PhysicsWorld.cpp" />
     <ClCompile Include="..\src\QuadruApp.cpp" />
     <ClCompile Include="..\blocks\ImGui\src\CinderImGui.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\src\Resolver.cpp" />
     <ClCompile Include="..\src\SRenderer.cpp" />
     <ClCompile Include="..\src\SymbolBatches.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\blocks\OpenZen\include\OpenZen.h" />
+    <ClInclude Include="..\blocks\OpenZen\include\OpenZenCAPI.h" />
+    <ClInclude Include="..\blocks\OpenZen\include\ZenProtocol.h" />
+    <ClInclude Include="..\blocks\OpenZen\include\ZenTypes.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\blocks\ImGui\include\CinderImGui.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h" />
@@ -143,17 +152,20 @@
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h" />
     <ClInclude Include="..\src\Controle.h" />
     <ClInclude Include="..\src\ControleLeg.h" />
+    <ClInclude Include="..\src\Conv.h" />
     <ClInclude Include="..\src\FKLeg.h" />
     <ClInclude Include="..\src\FKModel.h" />
     <ClInclude Include="..\src\FKNode.h" />
     <ClInclude Include="..\src\IKLeg.h" />
     <ClInclude Include="..\src\IKModel.h" />
+    <ClInclude Include="..\src\IMU.h" />
     <ClInclude Include="..\src\NodeData.h" />
     <ClInclude Include="..\src\Mesh.h" />
     <ClInclude Include="..\src\NodeDataPool.h" />
     <ClInclude Include="..\src\ModelConfig.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
-    <ClInclude Include="..\src\Resolver.h" />
+    <ClInclude Include="..\src\PhysicsWorld.h" />
+    <ClInclude Include="..\src\QuadruDefines.h" />
     <ClInclude Include="..\src\Singleton.h" />
     <ClInclude Include="..\src\SRenderer.h" />
     <ClInclude Include="..\src\SymbolBatches.h" />

@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started with OpenZen &mdash; OpenZen  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Supported Sensors" href="supported_sensors.html" />
+    <link rel="prev" title="Setup" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenZen
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started with OpenZen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#io-systems">IO Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sensor-components">Sensor Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-an-openzen-client">Creating an OpenZen Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-events-from-openzen">Receiving Events from OpenZen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-available-sensors">Listing Available Sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-a-sensor">Connecting to a Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-and-modifying-sensor-properties">Reading and Modifying Sensor Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-sensor-components">Accessing Sensor Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-sensor-values">Reading Sensor Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#closing-the-sensor-connection">Closing the Sensor Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supported_sensors.html">Supported Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_systems.html">IO Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csharp_api.html">C# API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unity_plugin.html">Unity Plugin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenZen</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started with OpenZen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-openzen">
+<h1>Getting Started with OpenZen<a class="headerlink" href="#getting-started-with-openzen" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>OpenZen allows to access many different sensor models which are connected via different transports layers with one
+unified programming interface. This allows to develop applications which support a wide range of sensors and allows
+to easily adapt your application to new or additional sensors.</p>
+<p>The following section will walk you through the process of accessing, configuring and streaming data from
+a sensor connected to OpenZen. If you prefer to study and run a full code example, please have a look
+at this <a class="reference external" href="https://bitbucket.org/lpresearch/openzen/src/master/examples/main.cpp">example source file</a>.</p>
+<div class="section" id="io-systems">
+<h3>IO Systems<a class="headerlink" href="#io-systems" title="Permalink to this headline">¶</a></h3>
+<p>To communicate with the sensor hardware, OpenZen provides multiple so-called <strong>IO systems</strong>. Each of these can establish
+the communication to sensors and can list the available sensor hardware. Here are some examples of IO systems available
+in OpenZen:</p>
+<ul class="simple">
+<li><p>USB</p></li>
+<li><p>Bluetooth</p></li>
+<li><p>Network streaming</p></li>
+</ul>
+<p>You can find the full list of available IO systems in the section <a class="reference internal" href="io_systems.html#io-system-label"><span class="std std-ref">IO Systems</span></a>.</p>
+</div>
+<div class="section" id="sensor-components">
+<h3>Sensor Components<a class="headerlink" href="#sensor-components" title="Permalink to this headline">¶</a></h3>
+<p>A sensor can have multiple components which supply various types of sensor data. Once the connection
+to a sensor has been established, the available components can be queried and their properties can
+be access and modified. Furthermore, the streaming of measurement data can be started for each component.</p>
+<p>At this time OpenZen supports the following components:</p>
+<p><strong>Inertial Measurement Unit (IMU)</strong></p>
+<p>Provides accelerometer and gyroscope measurements and the orientation result
+from the sensor fusion running on the connected sensor.</p>
+<p><strong>Global Navigation Satellite System (GNSS)</strong></p>
+<p>Provides global position measurements via GPS, BeiDou, GLONASS and Galileo, the associated
+error estimates and information on the quality and mode of the GNSS fix.</p>
+</div>
+</div>
+<div class="section" id="creating-an-openzen-client">
+<h2>Creating an OpenZen Client<a class="headerlink" href="#creating-an-openzen-client" title="Permalink to this headline">¶</a></h2>
+<p>The following description will use the C++ interface to OpenZen but other language bindings use the same concepts
+described here. To see the description how to use the other language bindings, please have a look at the respective
+section for the language you are interested in.</p>
+<p>In order to acquire sensor access via OpenZen, you first need to create an OpenZen client. This can be done with the
+utility method <code class="docutils literal notranslate"><span class="pre">zen::make_client</span></code>. This call returns an instance of the ZenClient class:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">clientPair</span> <span class="o">=</span> <span class="n">zen</span><span class="o">::</span><span class="n">make_client</span><span class="p">();</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">clientError</span> <span class="o">=</span> <span class="n">clientPair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">client</span> <span class="o">=</span> <span class="n">clientPair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">clientError</span><span class="p">)</span>
+    <span class="c1">// error when creating OpenZen client</span>
+    <span class="k">return</span> <span class="n">clientError</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="receiving-events-from-openzen">
+<h2>Receiving Events from OpenZen<a class="headerlink" href="#receiving-events-from-openzen" title="Permalink to this headline">¶</a></h2>
+<p>Every ZenClient instance contains its own event queue which accumulates events
+from all sensors that were obtained on that client. Events can either be polled
+using <code class="docutils literal notranslate"><span class="pre">ZenClient::pollNextEvent</span></code> or waited for using <code class="docutils literal notranslate"><span class="pre">ZenClient::waitForNextEvent</span></code>.
+The only way to terminate a client that is waiting for an event, is by destroying
+the client or preemptively calling <code class="docutils literal notranslate"><span class="pre">ZenClient::close</span></code>.</p>
+</div>
+<div class="section" id="listing-available-sensors">
+<h2>Listing Available Sensors<a class="headerlink" href="#listing-available-sensors" title="Permalink to this headline">¶</a></h2>
+<p>The IO systems available on your platform can automatically list all available
+sensors connected to the system. In order to do this, you need to call the method
+<code class="docutils literal notranslate"><span class="pre">ZenClient::listSensorsAsync</span></code> to start the query for available sensors. Depending
+on the IO systems, it can take a couple of seconds for the listing to be complete.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">error</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">listSensorsAsync</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// error while listing available senors</span>
+    <span class="k">return</span> <span class="n">error</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ZenClient::listSensorsAsync</span></code> method will return immediately and
+the information on the found sensors will be send to ZenClient’s event queue and
+can be retrieved with calls to <code class="docutils literal notranslate"><span class="pre">ZenClient::pollNextEvent</span></code> or
+<code class="docutils literal notranslate"><span class="pre">ZenClient::waitForNextEvent</span></code>. You can either do this on your applications main
+thread or use a background thread to retrieve the event listing data.</p>
+<p>The following code snippets shows an example how to receive the OpenZen events
+which contain the information during the sensor discovery process.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">event.component.handle</span></code> is 0, the event is not specific to a sensor
+but an event which is related by the OpenZen client itself, like the sensor
+discovery events. Next, we can check the <code class="docutils literal notranslate"><span class="pre">event.eventType</span></code> field for the
+<code class="docutils literal notranslate"><span class="pre">ZenSensorEvent_SensorFound</span></code> and <code class="docutils literal notranslate"><span class="pre">ZenSensorEvent_SensorListingProgress</span></code>
+event types. For the <code class="docutils literal notranslate"><span class="pre">ZenSensorEvent_SensorFound</span></code> event, the field
+<code class="docutils literal notranslate"><span class="pre">event.data.sensorFound</span></code> is of type <code class="docutils literal notranslate"><span class="pre">ZenSensorDesc</span></code> which contains the
+sensor’s name, serial number and all information required to connect to the sensor.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">listingComplete</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">listingComplete</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">pair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">waitForNextEvent</span><span class="p">();</span>
+    <span class="k">const</span> <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+    <span class="k">auto</span><span class="o">&amp;</span> <span class="n">event</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span>
+        <span class="k">break</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">event</span><span class="p">.</span><span class="n">component</span><span class="p">.</span><span class="n">handle</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">eventType</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">ZenSensorEvent_SensorFound</span><span class="p">:</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Found sensor &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sensorFound</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="nl">ZenSensorEvent_SensorListingProgress</span><span class="p">:</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sensor listing progress &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sensorListingProgress</span><span class="p">.</span><span class="n">progress</span>
+                <span class="o">&lt;&lt;</span> <span class="s">&quot; %&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sensorListingProgress</span><span class="p">.</span><span class="n">complete</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">listingComplete</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-to-a-sensor">
+<h2>Connecting to a Sensor<a class="headerlink" href="#connecting-to-a-sensor" title="Permalink to this headline">¶</a></h2>
+<p>A sensor found by the <code class="docutils literal notranslate"><span class="pre">ZenClient::listSensorsAsync</span></code> call can be connected via the OpenZen
+client using the <code class="docutils literal notranslate"><span class="pre">ZenSensorDesc</span></code> which is contained in the <code class="docutils literal notranslate"><span class="pre">event.data.sensorFound</span></code> of
+the <code class="docutils literal notranslate"><span class="pre">ZenSensorEvent_SensorFound</span></code>. The method call to <code class="docutils literal notranslate"><span class="pre">ZenClient::obtainSensor</span></code> returns a
+<code class="docutils literal notranslate"><span class="pre">std::pair</span></code> where the first entry is a possible error code and the second entry is an
+instance of the object <code class="docutils literal notranslate"><span class="pre">zen::ZenSensor</span></code> which can be used to access the Sensor’s
+properties.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensor</span><span class="p">(</span><span class="n">sensorDesc</span><span class="p">);</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">obtainError</span> <span class="o">=</span> <span class="n">sensorPair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">sensorPair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">obtainError</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// error while obtaining the sensor</span>
+    <span class="k">return</span> <span class="n">obtainError</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Sensors can also connected directly if the IO system they are connected too and their
+name is known already. Here, the method <code class="docutils literal notranslate"><span class="pre">ZenClient::obtainSensorByName</span></code> can be called
+with the name of the IO system and the name of the sensor:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// connect the sensor with the name lpmscu2000573 via the SiLabs USB IO System</span>
+<span class="k">auto</span> <span class="n">sensorPair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">obtainSensorByName</span><span class="p">(</span><span class="s">&quot;SiUsb&quot;</span><span class="p">,</span> <span class="s">&quot;lpmscu2000573&quot;</span><span class="p">);</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">obtainError</span> <span class="o">=</span> <span class="n">sensorPair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">sensorPair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">obtainError</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// error while obtaining the sensor</span>
+    <span class="k">return</span> <span class="n">obtainError</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Please check the documentation in the section <a class="reference internal" href="io_systems.html#io-system-label"><span class="std std-ref">IO Systems</span></a>. for the available
+IO systems and which naming conventions they use to identify connected sensors.</p>
+<p>You can connect multiple sensor via one <code class="docutils literal notranslate"><span class="pre">ZenClient</span></code> and the events of all
+sensor will be available on the event queue of the <code class="docutils literal notranslate"><span class="pre">ZenClient</span></code> instance.</p>
+</div>
+<div class="section" id="reading-and-modifying-sensor-properties">
+<h2>Reading and Modifying Sensor Properties<a class="headerlink" href="#reading-and-modifying-sensor-properties" title="Permalink to this headline">¶</a></h2>
+<p>OpenZen allows to read an modify the properties of connected sensors. Which properties
+are available depends on the concrete sensor connected. You can find more information
+on sensor properties in the section ref:<cite>supported-sensors-label</cite>.</p>
+<p>Each sensor property in OpenZen has a specific data type and the respective method needs
+to be used on the <code class="docutils literal notranslate"><span class="pre">zen::ZenSensor</span></code> instance.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">sensorModelPair</span> <span class="o">=</span> <span class="n">sensor</span><span class="p">.</span><span class="n">getStringProperty</span><span class="p">(</span><span class="n">ZenSensorProperty_SensorModel</span><span class="p">);</span>
+<span class="k">auto</span> <span class="o">&amp;</span> <span class="n">sensorModelError</span> <span class="o">=</span> <span class="n">sensorModelPair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span> <span class="o">&amp;</span> <span class="n">sensorModelName</span> <span class="o">=</span> <span class="n">sensorModelPair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sensorModelError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// error while reading the string property from the sensor</span>
+    <span class="k">return</span> <span class="n">sensorModelError</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Sensor Model: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">sensorModelName</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-sensor-components">
+<h2>Accessing Sensor Components<a class="headerlink" href="#accessing-sensor-components" title="Permalink to this headline">¶</a></h2>
+<p>To access a specific component of a sensor, the method call <code class="docutils literal notranslate"><span class="pre">ZenSensor::getAnyComponentOfType</span></code>
+can be used to retrieve the component of a specific type. If this component is not available
+on this sensor, an error will be returned.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">imuPair</span> <span class="o">=</span> <span class="n">sensor</span><span class="p">.</span><span class="n">getAnyComponentOfType</span><span class="p">(</span><span class="n">g_zenSensorType_Imu</span><span class="p">);</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">hasImu</span> <span class="o">=</span> <span class="n">imuPair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">imu</span> <span class="o">=</span> <span class="n">imuPair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hasImu</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// error, this sensor does not have an IMU component</span>
+    <span class="k">return</span> <span class="n">ZenError_WrongSensorType</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">ZenSensor</span></code> class the <code class="docutils literal notranslate"><span class="pre">ZenSensorComponent</span></code> returned by <code class="docutils literal notranslate"><span class="pre">ZenSensor::getAnyComponentOfType</span></code>
+call can be used to access and modify the properties of the sensor component.</p>
+</div>
+<div class="section" id="reading-sensor-values">
+<h2>Reading Sensor Values<a class="headerlink" href="#reading-sensor-values" title="Permalink to this headline">¶</a></h2>
+<p>To start receiving data from a connected sensor, you need to ensure that the sensor
+is in streaming mode to send out data on its own:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">error</span> <span class="o">=</span> <span class="n">imu</span><span class="p">.</span><span class="n">setBoolProperty</span><span class="p">(</span><span class="n">ZenImuProperty_StreamData</span><span class="p">,</span> <span class="nb">true</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="c1">// cannot set sensor into streaming mode</span>
+    <span class="k">return</span> <span class="n">error</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now, sensor events with measurement data will be available on the event queue of the OpenZen client.
+You can use the previously introduced methods <code class="docutils literal notranslate"><span class="pre">ZenClient::pollNextEvent</span></code> or
+<code class="docutils literal notranslate"><span class="pre">ZenClient::waitForNextEvent</span></code> to retrieve the sensor data:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="k">auto</span> <span class="n">pair</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">waitForNextEvent</span><span class="p">();</span>
+<span class="k">const</span> <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">event</span> <span class="o">=</span> <span class="n">pair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span>
+    <span class="k">break</span><span class="p">;</span>
+
+<span class="c1">// ensure the event is from the IMU component</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">component</span><span class="p">.</span><span class="n">handle</span> <span class="o">==</span> <span class="n">imu</span><span class="p">.</span><span class="n">component</span><span class="p">().</span><span class="n">handle</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">eventType</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">ZenImuEvent_Sample</span><span class="p">:</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&gt; Acceleration: </span><span class="se">\t</span><span class="s"> x = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> y = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> z = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&gt; Gyro: </span><span class="se">\t\t</span><span class="s"> x = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> y = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s"> z = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">event</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">imuData</span><span class="p">.</span><span class="n">g</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="closing-the-sensor-connection">
+<h2>Closing the Sensor Connection<a class="headerlink" href="#closing-the-sensor-connection" title="Permalink to this headline">¶</a></h2>
+<p>Once you are done with sampling sensor values, you can release the connection to the
+sensor and close the connection with the client:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">sensor</span><span class="p">.</span><span class="n">release</span><span class="p">();</span>
+<span class="n">client</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="supported_sensors.html" class="btn btn-neutral float-right" title="Supported Sensors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral float-left" title="Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, LP-Research Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C API &mdash; OpenZen  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C++ API" href="cpp_api.html" />
+    <link rel="prev" title="IO Systems" href="io_systems.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenZen
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with OpenZen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_sensors.html">Supported Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_systems.html">IO Systems</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialisation-and-cleanup">Initialisation and Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#events">Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-to-sensors-and-components">Access to Sensors and Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csharp_api.html">C# API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unity_plugin.html">Unity Plugin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenZen</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>C API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/c_api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-api">
+<h1>C API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The OpenZen API is implemented using a pure C API to guarantee ABI stability. The header
+file <code class="docutils literal notranslate"><span class="pre">OpenZenCAPI.h</span></code> can be included to access the C interface to OpenZen.</p>
+<p>The overall concept of OpenZen usage is described in the section <span class="xref std std-ref">getting-started-labe</span>.
+This section will describe some special considerations when using the C API. A complete
+example of the C API usage can be found at this
+<a class="reference external" href="https://bitbucket.org/lpresearch/openzen/src/master/examples/ExampleCAPI.c">example source file</a>.</p>
+</div>
+<div class="section" id="initialisation-and-cleanup">
+<h2>Initialisation and Cleanup<a class="headerlink" href="#initialisation-and-cleanup" title="Permalink to this headline">¶</a></h2>
+<p>In your application, you can create any numbers of clients to manage the sensors that
+you want to communicate with. When a new client is created, the OpenZen backend needs
+to connect to subsystems, which can result in failure. To initialize a client, call
+the <code class="docutils literal notranslate"><span class="pre">ZenInit</span></code> function with a pointer to the <code class="docutils literal notranslate"><span class="pre">ZenClientHandle_t</span></code> struct. This struct
+will then hold the handle to communicate with OpenZen on future calls.
+Before you use this handle, check whether the returned error equals <code class="docutils literal notranslate"><span class="pre">ZenError_None</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ZenError_t</span> <span class="n">zenError</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">ZenClientHandle_t</span> <span class="n">clientHandle</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="n">zenError</span> <span class="o">=</span> <span class="n">ZenInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">clientHandle</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">zenError</span> <span class="o">!=</span> <span class="n">ZenError_None</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ZenError %d when obtaining client.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">zenError</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To release all resources associated with the OpenZen client, you can call the <code class="docutils literal notranslate"><span class="pre">ZenShutdown</span></code>
+function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ZenShutdown</span><span class="p">(</span><span class="n">clientHandle</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<p>Every ZenClientHandle_t instance contains its own event queue which accumulates events
+from all sensors that were obtained on that client. Events can either be polled
+using <code class="docutils literal notranslate"><span class="pre">ZenPollNextEvent</span></code> or waited for using <code class="docutils literal notranslate"><span class="pre">ZenWaitForNextEvent</span></code>.
+The only way to terminate a client that is waiting for an event, is by destroying
+the client or preemptively calling <code class="docutils literal notranslate"><span class="pre">ZenReleaseSensor</span></code>.</p>
+</div>
+<div class="section" id="access-to-sensors-and-components">
+<h2>Access to Sensors and Components<a class="headerlink" href="#access-to-sensors-and-components" title="Permalink to this headline">¶</a></h2>
+<p>To query the available sensors and connect them can be done using the functions <code class="docutils literal notranslate"><span class="pre">ZenListSensorsAsync</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ZenObtainSensor</span></code>, <code class="docutils literal notranslate"><span class="pre">ZenObtainSensorByName</span></code>. The usage of these functions is described
+in the section <span class="xref std std-ref">getting-started-labe</span>.</p>
+<p>Once a sensor handle has been obtained, it needs to be provided to all <code class="docutils literal notranslate"><span class="pre">ZenSensor*</span></code> functions as a parameter.</p>
+<p>A sensor component can be retrieved with the function call <code class="docutils literal notranslate"><span class="pre">ZenSensorComponents</span></code> by providing the
+type of sensor component which should be loaded. Currently, the component types <code class="docutils literal notranslate"><span class="pre">g_zenSensorType_Imu</span></code>
+and <code class="docutils literal notranslate"><span class="pre">g_zenSensorType_Gnss</span></code> are supported.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cpp_api.html" class="btn btn-neutral float-right" title="C++ API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="io_systems.html" class="btn btn-neutral float-left" title="IO Systems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, LP-Research Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

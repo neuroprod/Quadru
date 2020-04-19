@@ -61,6 +61,15 @@
     <Filter Include="Source Files\simulation\physics">
       <UniqueIdentifier>{df8411b6-dc2b-40e1-8e5e-b321d9bac0f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\input">
+      <UniqueIdentifier>{baffe8f0-b8c9-408c-aece-5a1ca0e4d8bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OpenZen">
+      <UniqueIdentifier>{fbbdeb6c-5666-4fea-9614-9b2f347e8b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OpenZen\include">
+      <UniqueIdentifier>{1173aa2a-46cb-4c89-a322-fbe3ee739d55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -141,8 +150,14 @@
     <ClCompile Include="..\src\SymbolBatches.cpp">
       <Filter>Source Files\simulation\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Resolver.cpp">
+    <ClCompile Include="..\src\IMU.cpp">
+      <Filter>Source Files\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PhysicsWorld.cpp">
       <Filter>Source Files\simulation\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Conv.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,8 +209,29 @@
     <ClInclude Include="..\src\SymbolBatches.h">
       <Filter>Source Files\simulation\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Resolver.h">
+    <ClInclude Include="..\src\IMU.h">
+      <Filter>Source Files\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\OpenZen\include\OpenZen.h">
+      <Filter>Blocks\OpenZen\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\OpenZen\include\OpenZenCAPI.h">
+      <Filter>Blocks\OpenZen\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\OpenZen\include\ZenProtocol.h">
+      <Filter>Blocks\OpenZen\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\OpenZen\include\ZenTypes.h">
+      <Filter>Blocks\OpenZen\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\QuadruDefines.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PhysicsWorld.h">
       <Filter>Source Files\simulation\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Conv.h">
+      <Filter>Source Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

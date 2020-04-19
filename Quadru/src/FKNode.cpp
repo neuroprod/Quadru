@@ -54,6 +54,7 @@ void FKNode::setBase(vec3 position, vec3 rotation)
 	baseMatrix = glm::rotate(baseMatrix, rotation.z, vec3(0, 0, 1));
 
 }
+
 void FKNode::setRotation(float r)
 {
 	currentRotation = r;

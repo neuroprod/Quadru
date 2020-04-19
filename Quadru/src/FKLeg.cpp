@@ -10,7 +10,9 @@ FKLegRef FKLeg::create()
 
 void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef modelConfig, std::vector<FKNodeRef> &nodes)
 {
-	float PI = glm::pi<float>();
+	footRadius =modelConfig->footRadius;
+	distToFoot = vec4(0, -modelConfig->underLegLength + modelConfig->footRadius, 0.f, 1.f);
+	float  PI = glm::pi<float>();
 	hipOffsetZFlip = 1;
 	if (pos.x < 0 && pos.z>0)hipOffsetZFlip = -1;
 	if (pos.x > 0 && pos.z<0)hipOffsetZFlip = -1;
@@ -44,4 +46,14 @@ void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef mode
 	nodes.push_back(hip1);
 	nodes.push_back(hip2);
 	nodes.push_back(knee);
+}
+
+ci::vec3 FKLeg::getBallPos() 
+{
+	
+
+	vec4 ballPos = knee->globalMatrix * distToFoot;
+	
+	return vec3(ballPos.x, ballPos.y- footRadius, ballPos.z);
+
 }

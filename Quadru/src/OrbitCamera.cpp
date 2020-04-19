@@ -4,6 +4,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+
 void OrbitCamera::setup()
 {
 	update();
@@ -27,7 +28,7 @@ void OrbitCamera::update()
 	phi = glm::mod(phi, 3.1415f*2);
 	theta += deltaTheta;
 
-	theta = clamp(theta, 0.01f, 3.1415f / 2);
+	theta = glm::clamp(theta, 0.01f, 3.1415f / 2);
 
 	
 	float x = cameraDistance * sinf(theta)*cosf(phi);

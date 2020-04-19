@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup &mdash; OpenZen  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started with OpenZen" href="getting_started.html" />
+    <link rel="prev" title="Contents" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OpenZen
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dowloading-pre-compiled-openzen">Dowloading pre-compiled OpenZen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-openzen-from-source">Building OpenZen from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started with OpenZen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_sensors.html">Supported Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io_systems.html">IO Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_api.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="csharp_api.html">C# API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unity_plugin.html">Unity Plugin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OpenZen</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dowloading-pre-compiled-openzen">
+<h2>Dowloading pre-compiled OpenZen<a class="headerlink" href="#dowloading-pre-compiled-openzen" title="Permalink to this headline">¶</a></h2>
+<p>The pre-compiled binaries for OpenZen on Windows are available to download here:</p>
+<p><a class="reference external" href="https://bitbucket.org/lpresearch/openzen/downloads/">OpenZen Releases</a></p>
+<p>The folder example in this download contains a full example how to use OpenZen
+together with VisualStudio 2017 on Windows 64-bit.</p>
+</div>
+<div class="section" id="building-openzen-from-source">
+<h2>Building OpenZen from Source<a class="headerlink" href="#building-openzen-from-source" title="Permalink to this headline">¶</a></h2>
+<p>OpenZen uses CMake (3.11 or higher) as build system, and has been built
+and tested on Windows (MSVC) and Ubuntu (gcc7). As OpenZen is written in
+C++17, an up-to-date compiler is required. The following steps guide you
+through building OpenZen for Windows and Linux.</p>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Install MSVC build tools, or the Visual Studio IDE (requires C++17 support)</p></li>
+<li><p>Install CMake, or a GUI (e.g. Visual Studio) that incorporates CMake</p></li>
+<li><p>Install Qt (5.11.2 or higher)</p></li>
+<li><p>Clone the external repositories:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git submodule update --init
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Configure CMake with the environment variable CMAKE_PREFIX_PATH pointing towards your Qt bin directory</p></li>
+</ul>
+<p>You can do that by inserting this line (with the correct Qt installation path on your system)</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_PREFIX_PATH</span> <span class="s2">&quot;C://Qt//5.12.3//msvc2017_64//&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>in the topmost CMakeLists.txt
+Now you can run the OpenZenExample using MSVC.</p>
+</div>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Install gcc7 (requires C++17 support): sudo apt-get install gcc-7</p></li>
+<li><p>Install CMake (instructions)</p></li>
+<li><p>Install Qt (5.11.2 or higher): sudo apt-get install qtbase5-dev qtconnectivity5-dev</p></li>
+<li><p>Clone the external repositories:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git submodule update --init
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create a build folder and run cmake:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake ..
+</pre></div>
+</div>
+<p>Now you can run the OpenZenExample:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -j4
+examples/OpenZenExample
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started with OpenZen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Contents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, LP-Research Inc.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
