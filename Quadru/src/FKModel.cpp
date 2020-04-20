@@ -82,10 +82,10 @@ void FKModel::rebuild()
 	
 	int numLinks = 16;
 
-
+	float posY = config->bodyY / 1000.f + 0.05;
 	btVector3 baseHalfExtents((config->bodyLength - config->motorHeight * 2 - 20)/2000.f, 80.0f / 2000.f, config->bodyWidth / 2000.f);
 
-	btVector3 basePosition = btVector3(0.f, config->bodyY/1000.f +0.3f, 0.f);
+	btVector3 basePosition = btVector3(0.f, posY, 0.f);
 
 	btVector3 baseInertiaDiag(0.f, 0.f, 0.f);
 	float baseMass = body->nodeData->mass;
@@ -99,10 +99,10 @@ void FKModel::rebuild()
 
 	mMultiBody = new btMultiBody(numLinks, baseMass, baseInertiaDiag, false, false);
 	btQuaternion baseOriQuat(0.f, 0.f, 0.f, 1.f);
-	baseOriQuat.setEulerZYX(00.1,0.1,0);
+	baseOriQuat.setEulerZYX(00.0,0.0,0);
 	mMultiBody->setBasePos(basePosition);
 	mMultiBody->setWorldToBaseRot(baseOriQuat);
-
+	
 
 
 
@@ -141,12 +141,14 @@ void FKModel::rebuild()
 	int collisionFilterMask = int(btBroadphaseProxy::AllFilter);
 
 	btCollisionShape* shape = new btBoxShape(btVector3(baseHalfExtents[0], baseHalfExtents[1], baseHalfExtents[2]));  //new btSphereShape(baseHalfExtents[0]);
-	
-
 	btMultiBodyLinkCollider* col = new btMultiBodyLinkCollider(mMultiBody, -1);
 	col->setCollisionShape(shape);
+	btTransform trw;
+	trw.setIdentity();
+	trw.setOrigin(basePosition);
+	
 
-
+	//col->setWorldTransform(trw);
 	world->m_dynamicsWorld->addCollisionObject(col, collisionFilterGroup, collisionFilterMask);  //, 2,1+2);
 	mMultiBody->setBaseCollider(col);
 
@@ -174,13 +176,13 @@ void FKModel::rebuild()
 		btCollisionShape* shape =   new btSphereShape(config->footRadius/1000.f);
 
 		btMultiBodyLinkCollider* col = new btMultiBodyLinkCollider(mMultiBody, i);
-
+		col->setFriction(0.5);
 		col->setCollisionShape(shape);
 		btTransform tr;
 		tr.setIdentity();
 		tr.setOrigin(posr);
 		tr.setRotation(btQuaternion(quat[0], quat[1], quat[2], quat[3]));
-		col->setWorldTransform(tr);
+		//col->setWorldTransform(tr);
 		//       col->setFriction(friction);
 		bool isDynamic = 1;  //(linkMass > 0);
 		int collisionFilterGroup = isDynamic ? int(btBroadphaseProxy::DefaultFilter) : int(btBroadphaseProxy::StaticFilter);
@@ -190,12 +192,46 @@ void FKModel::rebuild()
 		{
 			world->m_dynamicsWorld->addCollisionObject(col, collisionFilterGroup, collisionFilterMask);  //,2,1+2);
 			
-
+		
 			mMultiBody->getLink(i).m_collider = col;
 		}
 		
-
 	}
-	
+	float mTor = 100000.001f;
+	FRLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 0, 0, mTor);
+
+
+	FRLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 1, 0, mTor);
+
+	FRLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 2, 0.0, mTor);
+
+	FLLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 4, 0, mTor);
+
+	FLLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 5, 0, mTor);
+	FLLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 6, 0, mTor);
+
+	BRLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 8, 0, mTor);
+	BRLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 9, 0, mTor);
+	BRLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 10, 0, mTor);
+
+	BLLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 12, 0, mTor);
+	BLLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 13, 0, mTor);
+	BLLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 14, 0, mTor);
+
+	world->m_dynamicsWorld->addMultiBodyConstraint(FRLeg->motorHip1);
+	world->m_dynamicsWorld->addMultiBodyConstraint(FRLeg->motorHip2);
+	world->m_dynamicsWorld->addMultiBodyConstraint(FRLeg->motorKnee);
+
+	world->m_dynamicsWorld->addMultiBodyConstraint(FLLeg->motorHip1);
+	world->m_dynamicsWorld->addMultiBodyConstraint(FLLeg->motorHip2);
+	world->m_dynamicsWorld->addMultiBodyConstraint(FLLeg->motorKnee);
+
+	world->m_dynamicsWorld->addMultiBodyConstraint(BRLeg->motorHip1);
+	world->m_dynamicsWorld->addMultiBodyConstraint(BRLeg->motorHip2);
+	world->m_dynamicsWorld->addMultiBodyConstraint(BRLeg->motorKnee);
+
+	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorHip1);
+	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorHip2);
+	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorKnee);
 }
 

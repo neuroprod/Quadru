@@ -3,6 +3,7 @@
 #include "FKNode.h"
 #include "ModelConfig.h"
 #include "PhysicsWorld.h";
+
 class FKLeg;
 typedef std::shared_ptr<FKLeg> FKLegRef;
 
@@ -22,6 +23,7 @@ public:
 	FKNodeRef hip1;
 	FKNodeRef hip2;
 	FKNodeRef knee;
-
-
+	btMultiBodyJointMotor* motorHip1;
+	btMultiBodyJointMotor* motorHip2;
+	btMultiBodyJointMotor* motorKnee;
 };

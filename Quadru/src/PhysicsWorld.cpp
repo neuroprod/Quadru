@@ -23,12 +23,12 @@ void PhysicsWorld::setup() {
 
 	m_dynamicsWorld = new btMultiBodyDynamicsWorld(m_dispatcher, m_broadphase, m_solver, m_collisionConfiguration);
 
-	m_dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	m_dynamicsWorld->setGravity(btVector3(0, -10.f, 0));
 
 	m_dynamicsWorld->getSolverInfo().m_jointFeedbackInWorldSpace = true;
 	m_dynamicsWorld->getSolverInfo().m_jointFeedbackInJointFrame = true;
 
-
+	//////
 	vec3 mSize = vec3(20, 5, 20);
 	btCollisionShape* colShape = new btBoxShape(btVector3(mSize.x / 2, mSize.y / 2, mSize.z / 2));
 	mat4 m;
@@ -55,6 +55,8 @@ void PhysicsWorld::setup() {
 	body->setActivationState(DISABLE_DEACTIVATION);
 
 	body->setFriction(1.f);
+	//body->setRollingFriction(1.f);
+
 	m_dynamicsWorld->addRigidBody(body);
 
 
@@ -65,7 +67,8 @@ void PhysicsWorld::update() {
 	if (!play && !step) return;
 
 	step = false;
-	m_dynamicsWorld->stepSimulation(1. / 240, 0);
+	m_dynamicsWorld->stepSimulation(1. / 120, 0);
+	m_dynamicsWorld->stepSimulation(1. / 120, 0);
 	hasUpdate = true;
 };
 

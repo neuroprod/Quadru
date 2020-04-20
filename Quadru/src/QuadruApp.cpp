@@ -80,10 +80,17 @@ void QuadruApp::setup()
 
 	IKmodel = std::make_shared< IKModel>();
 	IKmodel->setup(modelConfig, controle, fkModel);
+	IKmodel->update();
+	for (int i = 0; i < IKmodel->legs.size(); i++)
+	{
+		auto IKleg = IKmodel->legs[i];
+		 fkModel->mMultiBody->setJointPos(i*4, IKleg->angleHip1);
+		 fkModel->mMultiBody->setJointPos(i * 4+1, IKleg->angleHip2);
+		 fkModel->mMultiBody->setJointPos(i * 4+2, IKleg->angleKnee);
+		
+	}
 
-	
-
-
+	IKmodel->update();
 
 	renderer.setup(fkModel, controle, IKmodel);
 
@@ -137,8 +144,33 @@ void QuadruApp::update()
 		FKleg->hip2->setRotation(IKleg->angleHip2);
 		FKleg->knee->setRotation(IKleg->angleKnee);
 	}
-	*/
 
+
+
+
+	*/
+	float kp = 1.f;
+
+
+	for (int i = 0; i < IKmodel->legs.size(); i++)
+	{
+		auto IKleg = IKmodel->legs[i];
+		auto FKleg = fkModel->legs[i];
+		
+		//FKleg->motorHip1->setVelocityTarget(10.f, 1.f);µ
+		int in = i * 4;
+
+		/*fkModel->mMultiBody->setJointPos(in, IKmodel->legs[0]->angleHip1);
+		fkModel->mMultiBody->setJointPos(in+1, IKmodel->legs[0]->angleHip2);
+		fkModel->mMultiBody->setJointPos(in+2, IKmodel->legs[0]->angleKnee);
+		*/
+		FKleg->motorHip1->setPositionTarget(IKleg->angleHip1,kp);
+		FKleg->motorHip2->setPositionTarget(IKleg->angleHip2,kp);
+		FKleg->motorKnee->setPositionTarget(IKleg->angleKnee,kp);
+		
+	
+	}
+	
 	physicsWorld->update();
 
 
