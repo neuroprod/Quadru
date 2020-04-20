@@ -89,7 +89,14 @@ void SRenderer::draw() {
 
 	}
 	*/
-
+	gl::color(0.0, 1.0, 0.0);
+	for (auto n : model->testPos)
+	{
+		gl::pushMatrices();
+		gl::translate(n);
+		symbols.targetBatch->draw();
+		gl::popMatrices();
+	}
 	if (showMass) {
 		gl::color(0.3, 0.3, 0.3);
 		for (auto n : model->nodes)

@@ -2,6 +2,7 @@
 #include "cinder/app/App.h"
 #include "FKNode.h"
 #include "ModelConfig.h"
+#include "PhysicsWorld.h";
 class FKLeg;
 typedef std::shared_ptr<FKLeg> FKLegRef;
 
@@ -12,7 +13,7 @@ public:
 
 	FKLeg() {};
 	static FKLegRef create();
-	void setup(std::string name,FKNodeRef body,glm::vec3 pos, ModelConfigRef modelConfig, std::vector<FKNodeRef> &nodes);
+	void setup(std::string name,FKNodeRef body,glm::vec3 pos, ModelConfigRef modelConfig, std::vector<FKNodeRef> &nodes,btMultiBody * multiBody,int linkIndex);
 	ci::vec3 getBallPos();
 
 	ci::vec4 distToFoot;

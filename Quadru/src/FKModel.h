@@ -28,6 +28,6 @@ public:
 	std::vector<FKNodeRef> nodes;
 	std::vector<FKLegRef> legs;
 
-
+	std::vector<glm::vec3> testPos;
 	btMultiBody* mMultiBody;
 };
