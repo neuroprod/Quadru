@@ -46,16 +46,16 @@ void FKModel::update()
 	legs[3]->hip2->setRotation(mMultiBody->getJointPos(p++));
 	legs[3]->knee->setRotation(mMultiBody->getJointPos(p++));
 
-	testPos.clear();
-	for (int i = 0; i < 16; i++) 
-	{
 	
-		btVector3 pos = mMultiBody->localPosToWorld(i,btVector3(0.f, 0.f, 0.f));
-		
-	
-		testPos.push_back(vec3(pos.getX()*1000.f, pos.getY() * 1000.f, pos.getZ() * 1000.f));
-	}
-
+	btVector3 pos  =mMultiBody->getBaseWorldTransform().getOrigin();
+	bodyPos.x = pos.getX()*1000.f;
+	bodyPos.y = pos.getY() * 1000.f;
+	bodyPos.z = pos.getZ() * 1000.f;
+	btScalar rZ,rY,rX;
+	mMultiBody->getBaseWorldTransform().getRotation().getEulerZYX(rZ,rY,rX);
+	rotX = rX;
+	rotY = rY;
+	rotZ = rZ;
 
 	root->update();
 }
@@ -82,7 +82,7 @@ void FKModel::rebuild()
 	
 	int numLinks = 16;
 
-	float posY = config->bodyY / 1000.f + 0.05;
+	float posY = config->bodyY / 1000.f + 0.01;
 	btVector3 baseHalfExtents((config->bodyLength - config->motorHeight * 2 - 20)/2000.f, 80.0f / 2000.f, config->bodyWidth / 2000.f);
 
 	btVector3 basePosition = btVector3(0.f, posY, 0.f);
@@ -176,7 +176,8 @@ void FKModel::rebuild()
 		btCollisionShape* shape =   new btSphereShape(config->footRadius/1000.f);
 
 		btMultiBodyLinkCollider* col = new btMultiBodyLinkCollider(mMultiBody, i);
-		col->setFriction(0.5);
+		col->setFriction(1.0);
+		col->setRestitution(0.0f);
 		col->setCollisionShape(shape);
 		btTransform tr;
 		tr.setIdentity();

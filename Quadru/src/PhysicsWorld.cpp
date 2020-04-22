@@ -54,8 +54,9 @@ void PhysicsWorld::setup() {
 	body = new btRigidBody(rbInfo);
 	body->setActivationState(DISABLE_DEACTIVATION);
 
+	
 	body->setFriction(1.f);
-	//body->setRollingFriction(1.f);
+	body->setRestitution(0.0f);
 
 	m_dynamicsWorld->addRigidBody(body);
 
@@ -68,7 +69,7 @@ void PhysicsWorld::update() {
 
 	step = false;
 	m_dynamicsWorld->stepSimulation(1. / 120, 0);
-	m_dynamicsWorld->stepSimulation(1. / 120, 0);
+	//m_dynamicsWorld->stepSimulation(1. / 240, 100);
 	hasUpdate = true;
 };
 
@@ -78,9 +79,12 @@ void  PhysicsWorld::drawGui()
 
 	if (ui::Button("play")) { play = true; } ui::SameLine();
 	if (ui::Button("pauze")) { play = false; }ui::SameLine();
-	if (ui::Button("step")) { step = true; }ui::SameLine();
+	if (ui::Button("step")) { step = true; };
 
-
+	if (ui::Button("reset")) { 
+	
+	
+	}
 	
 
 }

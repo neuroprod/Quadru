@@ -159,6 +159,15 @@
     <ClCompile Include="..\src\Conv.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\WalkControle.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\WalkLeg.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PID.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -232,6 +241,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Conv.h">
       <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WalkControle.h">
+      <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WalkLeg.h">
+      <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PID.h">
+      <Filter>Source Files\controle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

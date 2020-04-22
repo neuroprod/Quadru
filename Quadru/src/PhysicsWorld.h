@@ -57,7 +57,7 @@ public:
 	void update();
 	void drawGui();
 	bool step = false;
-	bool play = false;
+	bool play = true;
 	bool hasUpdate = false;
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 	MyOverlapFilterCallback2* m_filterCallback;

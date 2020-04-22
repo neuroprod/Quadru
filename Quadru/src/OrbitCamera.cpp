@@ -22,7 +22,8 @@ void OrbitCamera::drawGui()
 }
 void OrbitCamera::update()
 {
-	
+	offsetPos += ( targetPos-offsetPos) / 20.f;
+
 	
 	phi += deltaPhi;
 	phi = glm::mod(phi, 3.1415f*2);
@@ -35,7 +36,7 @@ void OrbitCamera::update()
 	float z = cameraDistance * sinf(theta)*sinf(phi);
 	float y = cameraDistance * cosf(theta);
 
-	mCam.lookAt(vec3(x, y , z), vec3(0, 0, 0));
+	mCam.lookAt(vec3(x, y , z)+ offsetPos, vec3(0, 0, 0)+ offsetPos);
 	mCam.setPerspective(fov, getWindowAspectRatio(), 20, 10000);
 
 	deltaPhi *= (1 - dampingFactor);
@@ -43,6 +44,12 @@ void OrbitCamera::update()
 	
 	cameraDistance += ( targetCameraDistance- cameraDistance ) *dampingFactor;
 
+
+}
+void OrbitCamera::setBodyPos(ci::vec3 pos) 
+{
+	targetPos = pos;
+	targetPos.y /= 2.f;
 
 }
 void OrbitCamera::mouseDown(MouseEvent event)

@@ -132,6 +132,7 @@
     <ClCompile Include="..\src\ModelConfig.cpp" />
     <ClCompile Include="..\src\OrbitCamera.cpp" />
     <ClCompile Include="..\src\PhysicsWorld.cpp" />
+    <ClCompile Include="..\src\PID.cpp" />
     <ClCompile Include="..\src\QuadruApp.cpp" />
     <ClCompile Include="..\blocks\ImGui\src\CinderImGui.cpp" />
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui.cpp" />
@@ -139,6 +140,8 @@
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\src\SRenderer.cpp" />
     <ClCompile Include="..\src\SymbolBatches.cpp" />
+    <ClCompile Include="..\src\WalkControle.cpp" />
+    <ClCompile Include="..\src\WalkLeg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\blocks\OpenZen\include\OpenZen.h" />
@@ -165,10 +168,13 @@
     <ClInclude Include="..\src\ModelConfig.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
     <ClInclude Include="..\src\PhysicsWorld.h" />
+    <ClInclude Include="..\src\PID.h" />
     <ClInclude Include="..\src\QuadruDefines.h" />
     <ClInclude Include="..\src\Singleton.h" />
     <ClInclude Include="..\src\SRenderer.h" />
     <ClInclude Include="..\src\SymbolBatches.h" />
+    <ClInclude Include="..\src\WalkControle.h" />
+    <ClInclude Include="..\src\WalkLeg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

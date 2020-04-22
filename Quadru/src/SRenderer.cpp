@@ -38,8 +38,10 @@ void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmode
 }
 void SRenderer::update() {
 
+	
+	camera.setBodyPos(model->bodyPos);
 	camera.update();
-
+	
 
 }
 void SRenderer::drawGui(float fps) {
@@ -89,14 +91,14 @@ void SRenderer::draw() {
 
 	}
 	*/
-	gl::color(0.0, 1.0, 0.0);
+	/*gl::color(0.0, 1.0, 0.0);
 	for (auto n : model->testPos)
 	{
 		gl::pushMatrices();
 		gl::translate(n);
 		symbols.targetBatch->draw();
 		gl::popMatrices();
-	}
+	}*/
 	if (showMass) {
 		gl::color(0.3, 0.3, 0.3);
 		for (auto n : model->nodes)

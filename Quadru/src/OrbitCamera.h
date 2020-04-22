@@ -12,6 +12,9 @@ public:
 	void mouseDrag(ci::app::MouseEvent event) ;
 	void mouseUp(ci::app::MouseEvent event);
 	void mouseWheel(ci::app::MouseEvent event);
+	void setBodyPos(ci::vec3 pos);
+
+
 
 	ci::CameraPersp	mCam;
 
@@ -27,4 +30,7 @@ public:
 	
 	float deltaTheta =0;
 	float deltaPhi=0;
+
+	ci::vec3 targetPos =ci::vec3(0,0,0);
+	ci::vec3 offsetPos = ci::vec3(0, 0, 0);
 };

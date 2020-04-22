@@ -9,7 +9,7 @@
 #include "NodeDataPool.h"
 #include "Controle.h"
 #include "IKModel.h"
-
+#include "WalkControle.h"
 #include "PhysicsWorld.h"
 
 #ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
@@ -36,7 +36,7 @@ class QuadruApp : public App {
 	FKModelRef fkModel;
 	ModelConfigRef modelConfig;
 	ControleRef controle;
-
+	WalkControleRef walkControle;
 	IKModelRef IKmodel;
 	
 
@@ -51,8 +51,8 @@ void QuadruApp::setup()
 {
 	setWindowSize(1920, 1080);
 	setWindowPos(0, 0);
-	gl::enableVerticalSync(true);
-	setFrameRate(60);
+	gl::enableVerticalSync(false);
+	setFrameRate(120);
 	ui::initialize();
 	ui::GetStyle().WindowRounding = 0.0f;
 	ui::GetStyle().ChildRounding = 0.0f;
@@ -91,7 +91,8 @@ void QuadruApp::setup()
 	}
 
 	IKmodel->update();
-
+	walkControle = std::make_shared< WalkControle>();
+	walkControle->setup(controle);
 	renderer.setup(fkModel, controle, IKmodel);
 
 #ifdef CONNECT_TO_ROBOT
@@ -128,9 +129,10 @@ void QuadruApp::update()
 	modelConfig->drawGui();
 	controle->drawGui();
 	physicsWorld->drawGui();
-
-
-	controle->update();
+	walkControle->drawGui();
+	//console() << fkModel->rotX << " " << fkModel->rotY << " " << fkModel->rotZ << endl;
+	walkControle->update(fkModel->rotX);
+	//controle->update();
 	IKmodel->update();
 
 	/*
@@ -149,7 +151,7 @@ void QuadruApp::update()
 
 
 	*/
-	float kp = 1.f;
+	float kp = 0.5f;
 
 
 	for (int i = 0; i < IKmodel->legs.size(); i++)

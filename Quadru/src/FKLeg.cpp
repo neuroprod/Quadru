@@ -39,7 +39,7 @@ void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef mode
 		btVector3 linkInertiaDiag(0.f, 0.f, 0.f);
 		btCollisionShape* shape = 0;
 		btVector3 linkHalfExtents(0.05, 0.05, 0.05);
-		float linkMass = 0.6;
+		float linkMass = 1.6;
 		shape = new btBoxShape(btVector3(linkHalfExtents[0], linkHalfExtents[1], linkHalfExtents[2]));  //
 		shape->calculateLocalInertia(0.6, linkInertiaDiag);
 		delete shape;
@@ -66,7 +66,7 @@ void FKLeg::setup(string name,FKNodeRef body, glm::vec3 pos, ModelConfigRef mode
 		btVector3 linkInertiaDiag(0.f, 0.f, 0.f);
 		btCollisionShape* shape = 0;
 		btVector3 linkHalfExtents(0.05, 0.05, 0.05);
-		float linkMass = 0.6;
+		float linkMass = 1.6;
 		shape = new btBoxShape(btVector3(linkHalfExtents[0], linkHalfExtents[1], linkHalfExtents[2]));  //
 		shape->calculateLocalInertia(0.6, linkInertiaDiag);
 		delete shape;

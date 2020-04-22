@@ -29,7 +29,7 @@ NodeDataRef NodeDataPool::getData(std::string type)
 	nd->type = type;
 	if (type == "body") 
 	{
-		nd->mass = 2;
+		nd->mass = 3;
 		nd->mass3 = glm::pow(nd->mass, 1.f / 3.f);
 		MeshRef m = Mesh::create();
 		m->setup(geom::Cube().size(config->bodyLength- config->motorHeight*2-20, 80.0f, config->bodyWidth), vec3(0, 0, 0), baseColor, mGlsl);
@@ -59,7 +59,7 @@ NodeDataRef NodeDataPool::getData(std::string type)
 	{
 		nd->mass = 0.3;
 		nd->mass3 = glm::pow(nd->mass, 1.f / 3.f);
-		nd->centerOfMass = vec4(0, -50, 0, 1);
+		nd->centerOfMass = vec4(0, -120, 0, 1);
 		MeshRef m = Mesh::create();
 		m->setup(geom::Cone().base(20).apex(5).height(config->underLegLength-config->footRadius).direction(vec3(0,-1,0)), vec3(0, 0, 0), baseColor, mGlsl);
 		nd->meshes.push_back(m);
@@ -72,7 +72,7 @@ NodeDataRef NodeDataPool::getData(std::string type)
 	{
 		nd->mass = 1;
 		nd->mass3 = glm::pow(nd->mass, 1.f / 3.f);
-		nd->centerOfMass = vec4(0, -50, 0, 1);
+		nd->centerOfMass = vec4(0, -120,0, 1);
 		MeshRef m = Mesh::create();
 		m->setup(geom::Capsule().radius(22).length(config->upperLegLength ).center(vec3(0,-config->upperLegLength/2,0)), vec3(0, 0, 0), baseColor, mGlsl);
 		nd->meshes.push_back(m);
@@ -95,7 +95,7 @@ NodeDataRef NodeDataPool::getData(std::string type)
 	
 		nd->mass = 1;
 		nd->mass3 = glm::pow(nd->mass, 1.f / 3.f);
-		nd->centerOfMass = vec4(50, 0, 50, 1);
+		nd->centerOfMass = vec4(50, 0, 0, 1);
 		MeshRef motor = Mesh::create();
 		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, -1)).origin(vec3(config->hipOffsetX, 0, config->hipOffsetZ)), vec3(0, 0, 0), motorColor, mGlsl);
 		nd->meshes.push_back(motor);
@@ -108,7 +108,7 @@ NodeDataRef NodeDataPool::getData(std::string type)
 
 		nd->mass =1;
 		nd->mass3 = glm::pow(nd->mass, 1.f / 3.f);
-		nd->centerOfMass = vec4(50, 0, -50, 1);
+		nd->centerOfMass = vec4(50, 0, 0, 1);
 		MeshRef motor = Mesh::create();
 		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, 1)).origin(vec3(config->hipOffsetX, 0, -config->hipOffsetZ)), vec3(0, 0, 0), motorColor, mGlsl);
 		nd->meshes.push_back(motor);
