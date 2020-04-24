@@ -30,5 +30,5 @@ public:
 	ControleLegRef BL;
 
 	std::vector<ControleLegRef> legs;
-
+	bool doReset = false;
 };

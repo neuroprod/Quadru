@@ -1,5 +1,5 @@
 #include "SRenderer.h"
-#include "NodeDataPool.h"
+#include "MeshDataPool.h"
 #include "CinderImGui.h"
 using namespace ci;
 using namespace ci::app;
@@ -99,7 +99,7 @@ void SRenderer::draw() {
 		symbols.targetBatch->draw();
 		gl::popMatrices();
 	}*/
-	if (showMass) {
+	/*if (showMass) {
 		gl::color(0.3, 0.3, 0.3);
 		for (auto n : model->nodes)
 		{
@@ -114,7 +114,7 @@ void SRenderer::draw() {
 			gl::popMatrices();
 
 		}
-	}
+	}*/
 
 
 	//////////////////////home
@@ -159,11 +159,11 @@ void SRenderer::draw() {
 		mat4 shadowMatrix = mLightCam.getProjectionMatrix() * mLightCam.getViewMatrix();
 
 
-		NDP()->mGlsl->uniform("uShadowMap", 0);
-		NDP()->mGlsl->uniform("uLightPos", mLightPos);
-		NDP()->mGlsl->uniform("uShadowMatrix", shadowMatrix);
-		NDP()->mGlsl->uniform("uViewPos", camera.mCam.getEyePoint());
-		NDP()->mGlsl->uniform("alpha", 1.f);
+		MDP()->mGlsl->uniform("uShadowMap", 0);
+		MDP()->mGlsl->uniform("uLightPos", mLightPos);
+		MDP()->mGlsl->uniform("uShadowMatrix", shadowMatrix);
+		MDP()->mGlsl->uniform("uViewPos", camera.mCam.getEyePoint());
+		MDP()->mGlsl->uniform("alpha", 1.f);
 		if (showFloor) {
 			gl::color(Color::gray(0.7));
 			symbols.floorBatch->draw();
@@ -173,7 +173,7 @@ void SRenderer::draw() {
 			{
 				gl::pushMatrices();
 				gl::setModelMatrix(n->globalMatrix);
-				for (auto m : n->nodeData->meshes)
+				for (auto m : n->meshData->meshes)
 				{
 					m->draw();
 				}
@@ -211,7 +211,7 @@ void SRenderer::drawShadow()
 		{
 			gl::pushMatrices();
 			gl::setModelMatrix(n->globalMatrix);
-			for (auto m : n->nodeData->meshes)
+			for (auto m : n->meshData->meshes)
 			{
 				m->drawShadow();
 			}

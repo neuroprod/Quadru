@@ -6,12 +6,13 @@
 #include "SRenderer.h"
 #include "FKModel.h"
 #include "ModelConfig.h"
-#include "NodeDataPool.h"
+#include "MeshDataPool.h"
 #include "Controle.h"
 #include "IKModel.h"
 #include "WalkControle.h"
 #include "PhysicsWorld.h"
-
+#include "PhysicsModel.h"
+#include "AppSettings.h"
 #ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
 #include "IMU.h"
 #endif
@@ -31,7 +32,7 @@ class QuadruApp : public App {
 
 	void update() override;
 	void draw() override;
-
+	AppSettings appSettings;
 	SRenderer renderer;
 	FKModelRef fkModel;
 	ModelConfigRef modelConfig;
@@ -41,7 +42,7 @@ class QuadruApp : public App {
 	
 
 	PhysicsWorldRef physicsWorld;
-
+	PhysicsModelRef physicsModel;
 #ifdef CONNECT_TO_ROBOT
 		IMU imu;
 #endif
@@ -66,13 +67,16 @@ void QuadruApp::setup()
 	modelConfig = ModelConfig::create();
 	modelConfig->setup();
 	
-	NDP()->setup(modelConfig);
+	MDP()->setup(modelConfig);
 	
 	physicsWorld = std::make_shared<PhysicsWorld>();
 	physicsWorld->setup();
+	physicsModel = std::make_shared<PhysicsModel>();
+	physicsModel->setup(modelConfig,physicsWorld);
+
 
 	fkModel = std::make_shared<FKModel>();
-	fkModel->setup(modelConfig, physicsWorld);
+	fkModel->setup(modelConfig);
 
 
 	controle = std::make_shared<Controle>();
@@ -81,16 +85,22 @@ void QuadruApp::setup()
 	IKmodel = std::make_shared< IKModel>();
 	IKmodel->setup(modelConfig, controle, fkModel);
 	IKmodel->update();
+
+
 	for (int i = 0; i < IKmodel->legs.size(); i++)
 	{
 		auto IKleg = IKmodel->legs[i];
-		 fkModel->mMultiBody->setJointPos(i*4, IKleg->angleHip1);
-		 fkModel->mMultiBody->setJointPos(i * 4+1, IKleg->angleHip2);
-		 fkModel->mMultiBody->setJointPos(i * 4+2, IKleg->angleKnee);
+		physicsModel->mMultiBody->setJointPos(i*4, IKleg->angleHip1);
+		physicsModel->mMultiBody->setJointPos(i * 4+1, IKleg->angleHip2);
+		physicsModel->mMultiBody->setJointPos(i * 4+2, IKleg->angleKnee);
 		
 	}
 
-	IKmodel->update();
+	
+
+
+
+
 	walkControle = std::make_shared< WalkControle>();
 	walkControle->setup(controle);
 	renderer.setup(fkModel, controle, IKmodel);
@@ -123,6 +133,10 @@ void QuadruApp::update()
 	console() <<e<< endl;
 
 #endif
+
+	appSettings.drawGui();
+
+
 	float fps = getAverageFps();
 	renderer.drawGui(fps);
 	renderer.camera.drawGui();
@@ -130,60 +144,35 @@ void QuadruApp::update()
 	controle->drawGui();
 	physicsWorld->drawGui();
 	walkControle->drawGui();
+
+	
+
 	//console() << fkModel->rotX << " " << fkModel->rotY << " " << fkModel->rotZ << endl;
-	walkControle->update(fkModel->rotX);
-	//controle->update();
+	//walkControle->update(fkModel->rotX);
+
+
+	controle->update();
 	IKmodel->update();
 
-	/*
-	fkModel->body->baseMatrix = IKmodel->bodyMatrix;
-	for (int i = 0; i < IKmodel->legs.size() ; i++) 
-	{
-		auto IKleg = IKmodel->legs[i];
-		auto FKleg = fkModel->legs[i];
 
-		FKleg->hip1->setRotation(IKleg->angleHip1);
-		FKleg->hip2->setRotation(IKleg->angleHip2);
-		FKleg->knee->setRotation(IKleg->angleKnee);
-	}
-
-
-
-
-	*/
-	float kp = 0.5f;
-
-
-	for (int i = 0; i < IKmodel->legs.size(); i++)
-	{
-		auto IKleg = IKmodel->legs[i];
-		auto FKleg = fkModel->legs[i];
-		
-		//FKleg->motorHip1->setVelocityTarget(10.f, 1.f);µ
-		int in = i * 4;
-
-		/*fkModel->mMultiBody->setJointPos(in, IKmodel->legs[0]->angleHip1);
-		fkModel->mMultiBody->setJointPos(in+1, IKmodel->legs[0]->angleHip2);
-		fkModel->mMultiBody->setJointPos(in+2, IKmodel->legs[0]->angleKnee);
-		*/
-		FKleg->motorHip1->setPositionTarget(IKleg->angleHip1,kp);
-		FKleg->motorHip2->setPositionTarget(IKleg->angleHip2,kp);
-		FKleg->motorKnee->setPositionTarget(IKleg->angleKnee,kp);
-		
+	if (!appSettings.usePhysics) {
 	
+		fkModel->setPosition(IKmodel->bodyMatrix,IKmodel->angles);
+		
 	}
-	
-	physicsWorld->update();
-
-
+	else 
+	{
+		physicsModel->setMotorTargets( IKmodel->angles);
+		
+		physicsWorld->update();
+		physicsModel->update();
+		fkModel->setPosition(physicsModel->bodyMatrix, physicsModel->angles);
+		
+	}
 
 	fkModel->update();
 	
-
-
 	renderer.update();
-
-
 	
 }
 

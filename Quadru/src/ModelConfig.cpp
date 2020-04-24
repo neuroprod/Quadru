@@ -20,7 +20,7 @@ void ModelConfig::setDirty()
 }
 void ModelConfig::drawGui()
 {
-	ui::ScopedWindow window("Config");
+	ui::ScopedWindow window("RobotConfig");
 	if (ui::DragFloat("bodyY", &bodyY,1, 0, 1000)) setDirty();
 	if (ui::DragFloat("bodyWidth", &bodyWidth, 1, 0, 1000)) setDirty();
 	if (ui::DragFloat("bodyLength", &bodyLength, 1, 0, 1000)) setDirty();

@@ -117,6 +117,7 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\src\AppSettings.cpp" />
     <ClCompile Include="..\src\Controle.cpp" />
     <ClCompile Include="..\src\ControleLeg.cpp" />
     <ClCompile Include="..\src\Conv.cpp" />
@@ -126,11 +127,13 @@
     <ClCompile Include="..\src\IKLeg.cpp" />
     <ClCompile Include="..\src\IKModel.cpp" />
     <ClCompile Include="..\src\IMU.cpp" />
-    <ClCompile Include="..\src\NodeData.cpp" />
+    <ClCompile Include="..\src\MeshData.cpp" />
     <ClCompile Include="..\src\Mesh.cpp" />
-    <ClCompile Include="..\src\NodeDataPool.cpp" />
+    <ClCompile Include="..\src\MeshDataPool.cpp" />
     <ClCompile Include="..\src\ModelConfig.cpp" />
     <ClCompile Include="..\src\OrbitCamera.cpp" />
+    <ClCompile Include="..\src\PhysicsLeg.cpp" />
+    <ClCompile Include="..\src\PhysicsModel.cpp" />
     <ClCompile Include="..\src\PhysicsWorld.cpp" />
     <ClCompile Include="..\src\PID.cpp" />
     <ClCompile Include="..\src\QuadruApp.cpp" />
@@ -153,6 +156,7 @@
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\AppSettings.h" />
     <ClInclude Include="..\src\Controle.h" />
     <ClInclude Include="..\src\ControleLeg.h" />
     <ClInclude Include="..\src\Conv.h" />
@@ -162,11 +166,13 @@
     <ClInclude Include="..\src\IKLeg.h" />
     <ClInclude Include="..\src\IKModel.h" />
     <ClInclude Include="..\src\IMU.h" />
-    <ClInclude Include="..\src\NodeData.h" />
+    <ClInclude Include="..\src\MeshData.h" />
     <ClInclude Include="..\src\Mesh.h" />
-    <ClInclude Include="..\src\NodeDataPool.h" />
+    <ClInclude Include="..\src\MeshDataPool.h" />
     <ClInclude Include="..\src\ModelConfig.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
+    <ClInclude Include="..\src\PhysicsLeg.h" />
+    <ClInclude Include="..\src\PhysicsModel.h" />
     <ClInclude Include="..\src\PhysicsWorld.h" />
     <ClInclude Include="..\src\PID.h" />
     <ClInclude Include="..\src\QuadruDefines.h" />

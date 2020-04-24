@@ -9,6 +9,8 @@ void IKModel::setup(ModelConfigRef _config, ControleRef _controle, FKModelRef _f
 	config = _config;
 	controle=_controle;
 	fkModel = _fkModel;
+
+	angles.resize(12);
 	reBuild();
 
 }
@@ -55,11 +57,16 @@ void IKModel::update()
 	bodyMatrix = glm::rotate(bodyMatrix, controle->bodyRotZ, vec3(0, 0, 1));
 
 	mat4 invBodyMatrix = glm::inverse(bodyMatrix);
-
+	int count = 0;
 	for (int i=0; i< controle->legs.size();i++) 
 	{
 		vec3 target = controle->legs[i]->targetPos;
 		target.y += config->footRadius;
 		legs[i]->resolve(target, invBodyMatrix);
+
+		angles[count++] = legs[i]->angleHip1;
+		angles[count++] = legs[i]->angleHip2;
+		angles[count++] = legs[i]->angleKnee;
 	}
+
 }

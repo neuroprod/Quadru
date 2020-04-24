@@ -3,6 +3,7 @@
 #include "Controle.h"
 #include "IKLeg.h"
 #include "FKModel.h"
+
 class IKModel;
 typedef std::shared_ptr<IKModel> IKModelRef;
 
@@ -20,7 +21,7 @@ public:
 	glm::mat4 bodyMatrix;
 
 	std::vector<IKLegRef> legs;
-
+	std::vector<float> angles;
 
 	IKLegRef FR;
 	IKLegRef FL;

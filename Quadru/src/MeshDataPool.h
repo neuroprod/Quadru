@@ -3,24 +3,26 @@
 #include "cinder/app/App.h"
 #include "cinder/gl/gl.h"
 
-#include "NodeData.h"
+#include "MeshData.h"
 #include "ModelConfig.h"
-class NodeDataPool
+class MeshDataPool
 {
 
 public:
-	NodeDataPool();
+	MeshDataPool();
 	void setup(ModelConfigRef _config);
-	NodeDataRef getData(std::string type);
+	MeshDataRef getMesh(std::string type);
 	void clear();
+	
+
 	ModelConfigRef config;
-	std::vector<NodeDataRef> pool;
+	std::vector<MeshDataRef> pool;
 	ci::gl::GlslProgRef mGlsl;
 
 };
 
-typedef Singleton<NodeDataPool > NodeDataPoolSingleton;
+typedef Singleton<MeshDataPool > NodeDataPoolSingleton;
 
-inline NodeDataPool * NDP() {
+inline MeshDataPool * MDP() {
 	return  NodeDataPoolSingleton::Instance();
 }

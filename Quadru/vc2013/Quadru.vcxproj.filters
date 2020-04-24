@@ -49,9 +49,6 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{e25c849c-a42d-43fe-bb42-926c14a987bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\simulation\nodeData">
-      <UniqueIdentifier>{f3bfb46e-0ddf-40d2-8800-496d523608df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\IK">
       <UniqueIdentifier>{15ee2636-92d3-43a5-a9ec-3a660157609d}</UniqueIdentifier>
     </Filter>
@@ -129,12 +126,6 @@
     <ClCompile Include="..\src\Mesh.cpp">
       <Filter>Source Files\simulation\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\NodeData.cpp">
-      <Filter>Source Files\simulation\nodeData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\NodeDataPool.cpp">
-      <Filter>Source Files\simulation\nodeData</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\IKLeg.cpp">
       <Filter>Source Files\IK</Filter>
     </ClCompile>
@@ -168,6 +159,21 @@
     <ClCompile Include="..\src\PID.cpp">
       <Filter>Source Files\controle</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PhysicsLeg.cpp">
+      <Filter>Source Files\simulation\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PhysicsModel.cpp">
+      <Filter>Source Files\simulation\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MeshData.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MeshDataPool.cpp">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AppSettings.cpp">
+      <Filter>Source Files\settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -196,12 +202,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Singleton.h">
       <Filter>Source Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\NodeData.h">
-      <Filter>Source Files\simulation\nodeData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\NodeDataPool.h">
-      <Filter>Source Files\simulation\nodeData</Filter>
     </ClInclude>
     <ClInclude Include="..\src\IKModel.h">
       <Filter>Source Files\IK</Filter>
@@ -250,6 +250,21 @@
     </ClInclude>
     <ClInclude Include="..\src\PID.h">
       <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PhysicsLeg.h">
+      <Filter>Source Files\simulation\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PhysicsModel.h">
+      <Filter>Source Files\simulation\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MeshData.h">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MeshDataPool.h">
+      <Filter>Source Files\simulation\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AppSettings.h">
+      <Filter>Source Files\settings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

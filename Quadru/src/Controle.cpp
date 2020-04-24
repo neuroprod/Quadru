@@ -87,4 +87,21 @@ void Controle::drawGui()
 		BL->targetPos = BL->homePos;
 	
 	}
+	if (ui::Button("resetAll"))
+	{
+
+		FR->targetPos = FR->homePos;
+		FL->targetPos = FL->homePos;
+		BR->targetPos = BR->homePos;
+		BL->targetPos = BL->homePos;
+		bodyRotX = 0;
+		bodyRotY = 0;
+		bodyRotZ = 0;
+		bodyX = 0;
+		bodyY = config->bodyY;
+		bodyZ = 0;
+
+		doReset = true;
+	}
+	
 }

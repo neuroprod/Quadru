@@ -1,6 +1,6 @@
 #include "FKNode.h"
 #include "cinder/gl/gl.h"
-#include "NodeDataPool.h"
+#include "MeshDataPool.h"
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -9,7 +9,7 @@ FKNode::FKNode(string _name,string _type)
 {
 	name = _name;
 	type = _type;
-	nodeData = NDP()->getData(_type);
+	meshData = MDP()->getMesh(_type);
 }
 
 FKNodeRef FKNode::create(string name, string type)
@@ -76,7 +76,6 @@ void FKNode::update()
 		globalMatrix = localMatrix;
 		
 	}
-	nodeData->setGlobalMatrix(globalMatrix);
 
 	for (auto child : children)
 	{

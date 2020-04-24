@@ -1,6 +1,6 @@
 #pragma once
 #include "cinder/app/App.h"
-#include "NodeData.h"
+#include "MeshData.h"
 
 class FKNode;
 typedef std::shared_ptr<FKNode> FKNodeRef;
@@ -22,7 +22,7 @@ public:
 	
 	
 
-	NodeDataRef nodeData;
+	MeshDataRef meshData;
 
 	std::string name;
 	std::string type;

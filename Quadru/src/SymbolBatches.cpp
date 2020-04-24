@@ -1,5 +1,5 @@
 #include "SymbolBatches.h"
-#include "NodeDataPool.h"
+#include "MeshDataPool.h"
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -15,7 +15,7 @@ void SymbolBatches::setup()
 
 void SymbolBatches::makeFloor()
 {
-	floorBatch = gl::Batch::create(geom::Plane().size(vec2(10000, 10000)), NDP()->mGlsl);
+	floorBatch = gl::Batch::create(geom::Plane().size(vec2(10000, 10000)), MDP()->mGlsl);
 }
 void SymbolBatches::makeCOF() 
 {
