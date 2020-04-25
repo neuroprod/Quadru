@@ -144,6 +144,7 @@
     <ClCompile Include="..\blocks\ImGui\lib\imgui\imgui_demo.cpp" />
     <ClCompile Include="..\src\SRenderer.cpp" />
     <ClCompile Include="..\src\SymbolBatches.cpp" />
+    <ClCompile Include="..\src\TorqueGraph.cpp" />
     <ClCompile Include="..\src\WalkControle.cpp" />
     <ClCompile Include="..\src\WalkLeg.cpp" />
   </ItemGroup>
@@ -181,6 +182,7 @@
     <ClInclude Include="..\src\Singleton.h" />
     <ClInclude Include="..\src\SRenderer.h" />
     <ClInclude Include="..\src\SymbolBatches.h" />
+    <ClInclude Include="..\src\TorqueGraph.h" />
     <ClInclude Include="..\src\WalkControle.h" />
     <ClInclude Include="..\src\WalkLeg.h" />
   </ItemGroup>

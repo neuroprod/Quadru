@@ -7,6 +7,7 @@
 #include "BulletDynamics/Featherstone/btMultiBodyPoint2Point.h"
 #include "BulletDynamics/Featherstone/btMultiBodyLinkCollider.h"
 #include "BulletDynamics/Featherstone/btMultiBodyJointMotor.h"
+#include "BulletDynamics/Featherstone/btMultiBodyJointFeedback.h"
 enum MyFilterModes
 {
 	FILTER_GROUPAMASKB_AND_GROUPBMASKA2 = 0,

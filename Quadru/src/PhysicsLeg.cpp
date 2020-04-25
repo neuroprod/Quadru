@@ -7,7 +7,16 @@ PhysicsLegRef PhysicsLeg::create()
 	PhysicsLegRef ref = std::make_shared<PhysicsLeg>();
 	return ref;
 }
-
+void PhysicsLeg::updateData() 
+{
+	tHip1 = motorHip1->getAppliedImpulse(0) * 120;
+	tHip2 = motorHip2->getAppliedImpulse(0) * 120;
+	tKnee = motorKnee->getAppliedImpulse(0) * 120;
+	
+	torque.x = tHip1;
+	torque.y = tHip2;
+	torque.z = tKnee;
+}
 void PhysicsLeg::setup(std::string name, glm::vec3 pos, ModelConfigRef modelConfig, btMultiBody* multiBody, int linkIndex)
 {
 	

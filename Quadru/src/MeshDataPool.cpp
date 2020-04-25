@@ -74,7 +74,7 @@ MeshDataRef MeshDataPool::getMesh(std::string type)
 
 	
 		MeshRef motor = Mesh::create();
-		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(1,0,0)).origin(vec3( 5, 0, 0)), vec3(0, 0, 0), motorColor, mGlsl);
+		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(1,0,0)).origin(vec3(-config->hipOffsetZ +20, 0, 0)), vec3(0, 0, 0), motorColor, mGlsl);
 		nd->meshes.push_back(motor);
 
 
@@ -84,7 +84,7 @@ MeshDataRef MeshDataPool::getMesh(std::string type)
 	
 	
 		MeshRef motor = Mesh::create();
-		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, -1)).origin(vec3(config->hipOffsetX, 0, config->hipOffsetZ)), vec3(0, 0, 0), motorColor, mGlsl);
+		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, -1)).origin(vec3(config->hipOffsetX, 0, 0)), vec3(0, 0, 0), motorColor, mGlsl);
 		nd->meshes.push_back(motor);
 
 
@@ -95,7 +95,7 @@ MeshDataRef MeshDataPool::getMesh(std::string type)
 
 
 		MeshRef motor = Mesh::create();
-		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, 1)).origin(vec3(config->hipOffsetX, 0, -config->hipOffsetZ)), vec3(0, 0, 0), motorColor, mGlsl);
+		motor->setup(geom::Cylinder().radius(config->motorRadius).height(config->motorHeight).direction(vec3(0, 0, 1)).origin(vec3(config->hipOffsetX, 0, 0)), vec3(0, 0, 0), motorColor, mGlsl);
 		nd->meshes.push_back(motor);
 
 

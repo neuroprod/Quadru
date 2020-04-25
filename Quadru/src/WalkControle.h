@@ -13,7 +13,7 @@ public:
 	enum MOVESTATE { STOP, STARTWALK, WALK,STOPWALK };
 	WalkControle() {  };
 	void setup(ControleRef _controle, PathPlannerRef _pathPlaner) ;
-	void update(float rotX) ;
+	void update(float rotX,float rotZ) ;
 
 	void drawGui() ;
 
@@ -21,7 +21,8 @@ public:
 
 	ControleRef controle;
 	PathPlannerRef pathPlaner;
-	PID pid;
+	PID pidX;
+	PID pidZ;
 	WalkLegRef FRLeg;
 	WalkLegRef FLLeg;
 	WalkLegRef BRLeg;

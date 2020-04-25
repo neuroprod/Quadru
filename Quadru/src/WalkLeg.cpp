@@ -10,19 +10,19 @@ void WalkLeg::setStepState(int state, float dist, int numsteps)
 	//0 =rising to home, 1=faling to target ,2=gliding to home, 3=gliding to target
 	if (stepState == 0)
 	{
-		positions =pathPlaner->getPathWalkRising(dist, 70, numsteps);
+		positions =pathPlaner->getPathWalkRising(dist, 50, numsteps);
 	}
 	else if (stepState == 1)
 	{
-		positions = pathPlaner->getPathWalkFaling(dist, 70, numsteps);
+		positions = pathPlaner->getPathWalkFaling(dist, 50, numsteps);
 	}
 	else if (stepState == 2)
 	{
-		positions = pathPlaner->getPathWalkHome(dist, 70, numsteps);
+		positions = pathPlaner->getPathWalkHome(dist, 50, numsteps);
 	}
 	else if (stepState == 3)
 	{
-		positions = pathPlaner->getPathWalkStep(dist, 70, numsteps);
+		positions = pathPlaner->getPathWalkStep(dist, 50, numsteps);
 	}
 }
 void WalkLeg::nextStepState(float dist,int numsteps) 

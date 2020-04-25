@@ -14,7 +14,7 @@ public:
 	void setMotorTargets(std::vector<float> &targets);
 	void setDefaultAngles(std::vector<float>& targets);
 	void rebuild();
-	void update();
+	void updateData();
 
 	PhysicsWorldRef world;
 	ModelConfigRef config;
@@ -31,6 +31,7 @@ public:
 	std::vector<btMultiBodyLinkCollider*> linkColiders;
 	std::vector< btMultiBodyJointMotor*>motors;
 
+	
 	glm::mat4 bodyMatrix;
 	std::vector<float> angles;
 

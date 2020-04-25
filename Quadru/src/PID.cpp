@@ -21,7 +21,8 @@ float PID::calculate(float target, float current)
 	// Integral term
 	integral += error * dt;
 	float Iout = Ki * integral;
-
+	//if (Iout < 0 && Pout>0)Iout = 0;
+	//if (Iout > 0 && Pout<0)Iout = 0;
 	// Derivative term
 	float derivative = (error - pre_error) / dt;
 	float Dout = 0;
@@ -45,8 +46,10 @@ float PID::calculate(float target, float current)
 
 
 }
-void PID::drawGui()
+void PID::drawGui(string name)
 {
+	ui::PushID(name.c_str());
+	ui::Text(name.c_str());
     ui::DragFloat("p", &Kp, 1.0f, 0, 1000);
     ui::DragFloat("i", &Ki, 0.1f, 0, 1000);
     ui::DragFloat("d", &Kd, 0.1f, 0, 1000);
@@ -85,4 +88,5 @@ void PID::drawGui()
 	}
 	string e = to_string(errorSum);
 	ui::Text(e.c_str());
+	ui::PopID();
 }

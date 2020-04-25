@@ -15,6 +15,9 @@ void PhysicsModel::setup(ModelConfigRef _config, PhysicsWorldRef _world) {
 	world = _world;
 	config = _config;
 	angles.resize(12);
+	
+	
+
 
 
 	rebuild();
@@ -28,6 +31,7 @@ void PhysicsModel::setMotorTargets(std::vector<float> &targets)
 	{
 		int index = i * 3;	
 		legs[i]->motorHip1->setPositionTarget(targets[index], Kp);
+		
 		legs[i]->motorHip2->setPositionTarget(targets[index + 1], Kp);
 		legs[i]->motorKnee->setPositionTarget(targets[index + 2], Kp);
 	
@@ -42,6 +46,7 @@ void PhysicsModel::setDefaultAngles(std::vector<float> &targets)
 	{
 		
 		mMultiBody->setJointPos(i * 4, targets[ i*3]);
+
 		mMultiBody->setJointPos(i * 4 + 1, targets[i * 3+1]);
 		mMultiBody->setJointPos(i * 4 + 2, targets[i * 3+2]);
 		mMultiBody->setJointVel(i * 4, 0.f);
@@ -50,7 +55,7 @@ void PhysicsModel::setDefaultAngles(std::vector<float> &targets)
 	}
 
 }
-void PhysicsModel::update()
+void PhysicsModel::updateData()
 {
 	btTransform tr = mMultiBody->getBaseWorldTransform();
 
@@ -95,7 +100,11 @@ void PhysicsModel::update()
 		}
 	}
 
-
+	for (int i = 0; i < legs.size(); i++)
+	{
+		legs[i]->updateData();
+	}
+	
 	
 }
 void PhysicsModel::rebuild()
@@ -259,6 +268,6 @@ void PhysicsModel::rebuild()
 	motors.push_back(BLLeg->motorHip2);
 	motors.push_back(BLLeg->motorKnee);
 
-
+	
 }
 

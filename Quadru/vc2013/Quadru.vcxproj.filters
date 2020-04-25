@@ -180,6 +180,9 @@
     <ClCompile Include="..\src\PathPlanner.cpp">
       <Filter>Source Files\controle\walking</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\TorqueGraph.cpp">
+      <Filter>Source Files\controle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="..\src\PathPlanner.h">
       <Filter>Source Files\controle\walking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\TorqueGraph.h">
+      <Filter>Source Files\controle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

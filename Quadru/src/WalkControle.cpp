@@ -19,6 +19,11 @@ void WalkControle::setup(ControleRef _controle, PathPlannerRef _pathPlaner)
 	legs.push_back(BRLeg);
 	legs.push_back(BLLeg);
 
+	pidX.Kp = 174;
+	pidX.Kd = 0.7;
+	pidX.inv = true;
+	pidZ.Kp = 735;
+	pidZ.Kd = 1.2;
 	for (int i=0;i< 4;i++ )
 	{
 		legs[i]->pathPlaner = _pathPlaner;
@@ -26,13 +31,13 @@ void WalkControle::setup(ControleRef _controle, PathPlannerRef _pathPlaner)
 	}
 
 }
-void WalkControle::update(float rotX) 
+void WalkControle::update(float rotX,float rotZ) 
 {
 	float delta = 1.f / 120.f;
 
 	
-
-	controle->bodyZ = pid.calculate(0, rotX);
+	controle->bodyX =40.f+ pidZ.calculate(0, rotZ);
+	controle->bodyZ = pidX.calculate(0, rotX);
 
 	if (currentState == MOVESTATE::STOP) 
 	{
@@ -94,5 +99,6 @@ void WalkControle::drawGui()
 	if (ui::DragFloat("move Distance", &walkDistance, 1, 0, 445));
 	if (ui::Button("test")) { walkDistance = 100.0f; }
 	
-	pid.drawGui();
+	pidX.drawGui("xRotation");
+	pidZ.drawGui("zRotation");
 }
