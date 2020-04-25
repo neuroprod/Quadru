@@ -16,7 +16,7 @@ public:
 	ModelConfigRef config;
 
 
-	float bodyX = 0;
+	float bodyX = 50;
 	float bodyY = 0;
 	float bodyZ = 0;
 

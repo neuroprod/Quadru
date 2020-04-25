@@ -92,7 +92,7 @@ void QuadruApp::setup()
 
 
 	walkControle = std::make_shared< WalkControle>();
-	walkControle->setup(controle);
+	walkControle->setup(controle, pathPlaner);
 	renderer.setup(fkModel, controle, IKmodel);
 
 #ifdef CONNECT_TO_ROBOT
@@ -145,7 +145,7 @@ void QuadruApp::update()
 
 	//console() << fkModel->rotX << " " << fkModel->rotY << " " << fkModel->rotZ << endl;
 	//walkControle->update(fkModel->rotX);
-
+	walkControle->update(physicsModel->angleX);
 
 	controle->update();
 	IKmodel->update();
@@ -168,7 +168,7 @@ void QuadruApp::update()
 
 	fkModel->update();
 	
-	renderer.update();
+	renderer.update(physicsModel->bodyPos);
 	
 }
 

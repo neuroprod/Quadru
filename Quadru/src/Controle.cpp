@@ -27,7 +27,7 @@ void Controle::setup(ModelConfigRef _config)
 
 void Controle::setBase() 
 {
-	bodyX = 0;
+	bodyX = 50;
 	bodyY = config->bodyY;
 	bodyZ = 0;
 

@@ -4,27 +4,42 @@
 using namespace ci;
 using namespace ci::app;
 using namespace std;
-
-void WalkLeg::update(float p) 
+void WalkLeg::setStepState(int state, float dist, int numsteps)
 {
+	stepState = state;
 	//0 =rising to home, 1=faling to target ,2=gliding to home, 3=gliding to target
-	float eTime = 0;
-	if (p < 0.5)
+	if (stepState == 0)
 	{
-		eTime = 4 * p * p * p;
+		positions =pathPlaner->getPathWalkRising(dist, 70, numsteps);
 	}
-	else
+	else if (stepState == 1)
 	{
-		float f = ((2 * p) - 2);
-		eTime = 0.5 * f * f * f + 1;
+		positions = pathPlaner->getPathWalkFaling(dist, 70, numsteps);
 	}
-	if (stepState == 0) 
+	else if (stepState == 2)
 	{
-		currentPos.y = stepHeight * eTime;
+		positions = pathPlaner->getPathWalkHome(dist, 70, numsteps);
 	}
-	if (stepState == 1)
+	else if (stepState == 3)
 	{
-		currentPos.y = stepHeight *(1.f- eTime);
+		positions = pathPlaner->getPathWalkStep(dist, 70, numsteps);
 	}
+}
+void WalkLeg::nextStepState(float dist,int numsteps) 
+{
+	stepState++;
+	setStepState(stepState % 4, dist, numsteps);
+
+	
+
+}
+void WalkLeg::update(int p) 
+{
+
+	vec2 pos = positions[p];
+	currentPos.x = pos.x;
+	currentPos.y = -pos.y;
+	currentPos.z = 0;
+
 	
 }

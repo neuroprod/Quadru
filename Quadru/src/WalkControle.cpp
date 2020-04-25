@@ -5,8 +5,9 @@
 using namespace ci;
 using namespace ci::app;
 using namespace std;
-void WalkControle::setup(ControleRef _controle)
+void WalkControle::setup(ControleRef _controle, PathPlannerRef _pathPlaner)
 {
+	pathPlaner = _pathPlaner;
 	controle = _controle;
 	FRLeg = std::make_shared<WalkLeg>();
 	FLLeg = std::make_shared<WalkLeg>();
@@ -18,31 +19,29 @@ void WalkControle::setup(ControleRef _controle)
 	legs.push_back(BRLeg);
 	legs.push_back(BLLeg);
 
+	for (int i=0;i< 4;i++ )
+	{
+		legs[i]->pathPlaner = _pathPlaner;
+
+	}
+
 }
 void WalkControle::update(float rotX) 
 {
 	float delta = 1.f / 120.f;
+
+	
+
 	controle->bodyZ = pid.calculate(0, rotX);
 
 	if (currentState == MOVESTATE::STOP) 
 	{
-		if (stepDistance > 0) 
+
+		if (walkDistance > 0) 
 		{
-			currentState = MOVESTATE::WALK;
-			time = 0;
-
-			FRLeg->stepState=0;
-			FRLeg->moveDistance = stepDistance;
-		
-			BLLeg->stepState = 0;
-			BLLeg->moveDistance = stepDistance;
-
-
-			FLLeg->stepState = 2;
-			FLLeg->moveDistance = stepDistance;
-		
-			BRLeg->stepState = 2;
-			BRLeg->moveDistance = stepDistance;
+			currentState = MOVESTATE::STARTWALK;
+			stepCount = 0;
+			numSteps = 0;
 
 		}
 		else 
@@ -50,25 +49,37 @@ void WalkControle::update(float rotX)
 			return;
 		}
 	}
-	time += delta;
 
-	if (time > stepTime) {
-		time = 0;
-	
-		for (WalkLegRef l : legs)
+	if (stepCount == numSteps) 
+	{
+		stepCount = 0;
+		numSteps = walkTime / (1.f / 120.f);
+		if (currentState == MOVESTATE::STARTWALK) 
 		{
-			l->stepState += 1;
-			if (l->stepState > 3) l->stepState = 0;
+			//0 =rising to home, 1=faling to target ,2=gliding to home, 3=gliding to target
+			FRLeg->setStepState(0,0.f, numSteps);
+			BLLeg->setStepState(0, 0.f, numSteps);
+			FLLeg->setStepState(2, 0.f, numSteps);
+			BRLeg->setStepState(2, 0.f, numSteps);
+
+			currentState = MOVESTATE::WALK;
 		}
-	
+		else if (currentState == MOVESTATE::WALK)
+		{
+			for (WalkLegRef l : legs)
+			{
+				l->nextStepState(walkDistance,numSteps);
+
+			}
+		}
+
 	}
-	float nTime = time / stepTime;
-	
 	for (WalkLegRef l : legs)
 	{
-		l->update(nTime);
-		
+		l->update(stepCount);
+
 	}
+	stepCount++;
 	
 	for (int i =0;i<4;i++ )
 	{
@@ -79,9 +90,9 @@ void WalkControle::update(float rotX)
 void WalkControle::drawGui() 
 {
 	ui::ScopedWindow windoww("WalkControl");
-	if (ui::DragFloat("stepTime", &stepTime, 0.01, 0.1, 5));
-	if (ui::DragFloat("move Distance", &stepDistance, 1, 0, 45));
-	if (ui::Button("test")) { stepDistance = 1.0f; }
+	if (ui::DragFloat("walkTime", &walkTime, 0.01, 0.1, 5));
+	if (ui::DragFloat("move Distance", &walkDistance, 1, 0, 445));
+	if (ui::Button("test")) { walkDistance = 100.0f; }
 	
 	pid.drawGui();
 }

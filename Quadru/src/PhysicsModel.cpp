@@ -191,8 +191,8 @@ void PhysicsModel::rebuild()
 		btCollisionShape* shape = new btSphereShape(config->footRadius / 1000.f);
 
 		btMultiBodyLinkCollider* col = new btMultiBodyLinkCollider(mMultiBody, i);
-		col->setFriction(1.0);
-		col->setRestitution(0.0f);
+		col->setFriction(0.9);
+		col->setRestitution(0.1f);
 		col->setCollisionShape(shape);
 
 		btTransform tr;

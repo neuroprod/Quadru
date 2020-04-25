@@ -8,6 +8,6 @@ public:
 	
 	AppSettings() {}
 	void drawGui();
-	bool usePhysics = false;
-	bool pathEditor = true;
+	bool usePhysics = true;
+	bool pathEditor = false;
 };

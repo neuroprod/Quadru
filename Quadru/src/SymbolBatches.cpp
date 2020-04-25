@@ -15,7 +15,8 @@ void SymbolBatches::setup()
 
 void SymbolBatches::makeFloor()
 {
-	floorBatch = gl::Batch::create(geom::Plane().size(vec2(10000, 10000)), MDP()->mGlsl);
+	
+	floorBatch = gl::Batch::create(geom::Plane().size(vec2(100000, 100000)), MDP()->mGlsl);
 }
 void SymbolBatches::makeCOF() 
 {

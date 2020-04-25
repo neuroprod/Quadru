@@ -29,7 +29,7 @@ void PhysicsWorld::setup() {
 	m_dynamicsWorld->getSolverInfo().m_jointFeedbackInJointFrame = true;
 
 	//////
-	vec3 mSize = vec3(20, 5, 20);
+	vec3 mSize = vec3(100, 5, 100);
 	btCollisionShape* colShape = new btBoxShape(btVector3(mSize.x / 2, mSize.y / 2, mSize.z / 2));
 	mat4 m;
 	m = glm::translate(m, vec3(0, -2.5, 0));

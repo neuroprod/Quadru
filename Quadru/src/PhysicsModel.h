@@ -36,6 +36,6 @@ public:
 
 
 	ci::vec3 bodyPos;
-	float angleX;
-	float angleZ;
+	float angleX =0;
+	float angleZ=0;
 }; 

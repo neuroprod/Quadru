@@ -39,9 +39,9 @@ float PID::calculate(float target, float current)
 
 	// Save error to previous error
 	pre_error = error;
+	if (inv)output *= -1;
 	
-	
-	return output*-1.f;
+	return output;
 
 
 }
@@ -50,6 +50,7 @@ void PID::drawGui()
     ui::DragFloat("p", &Kp, 1.0f, 0, 1000);
     ui::DragFloat("i", &Ki, 0.1f, 0, 1000);
     ui::DragFloat("d", &Kd, 0.1f, 0, 1000);
+	ui::Checkbox("invert", &inv);
 	float errorSum = 0;
 	{
 		errors.push_back(error);

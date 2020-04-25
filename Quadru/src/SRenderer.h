@@ -14,7 +14,7 @@ class SRenderer
 public:
 	SRenderer() {}
 	void setup(FKModelRef _model, ControleRef _control, IKModelRef _IKmodel);
-	void update();
+	void update(ci::vec3 bodyPos);
 	void draw();
 	void drawGui(float fps);
 	void startCamera();

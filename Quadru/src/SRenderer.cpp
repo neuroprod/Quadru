@@ -29,16 +29,17 @@ void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmode
 	mFbo = gl::Fbo::create(fboSize, fboSize, fboFormat);
 
 	mLightPos = vec3(1000.0f, 2500.0f, 1500.0f);
-	mLightCam.setPerspective(40.0f, mFbo->getAspectRatio(), 10.f, 5000.0f);
+	mLightCam.setPerspective(50.0f, mFbo->getAspectRatio(), 10.f, 15000.0f);
 	mLightCam.lookAt(mLightPos, vec3(0.0f));
 
 
 	
 }
-void SRenderer::update() {
+void SRenderer::update(vec3 bodyPos) {
 
-	
-	camera.setBodyPos(model->bodyPos);
+	mLightPos = vec3(1000.0f, 2500.0f, 1500.0f) + bodyPos;
+	mLightCam.lookAt(mLightPos, bodyPos);
+	camera.setBodyPos(bodyPos);
 	camera.update();
 	
 
