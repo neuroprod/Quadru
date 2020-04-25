@@ -132,6 +132,7 @@
     <ClCompile Include="..\src\MeshDataPool.cpp" />
     <ClCompile Include="..\src\ModelConfig.cpp" />
     <ClCompile Include="..\src\OrbitCamera.cpp" />
+    <ClCompile Include="..\src\PathPlanner.cpp" />
     <ClCompile Include="..\src\PhysicsLeg.cpp" />
     <ClCompile Include="..\src\PhysicsModel.cpp" />
     <ClCompile Include="..\src\PhysicsWorld.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="..\src\MeshDataPool.h" />
     <ClInclude Include="..\src\ModelConfig.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
+    <ClInclude Include="..\src\PathPlanner.h" />
     <ClInclude Include="..\src\PhysicsLeg.h" />
     <ClInclude Include="..\src\PhysicsModel.h" />
     <ClInclude Include="..\src\PhysicsWorld.h" />

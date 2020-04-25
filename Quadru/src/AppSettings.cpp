@@ -9,6 +9,6 @@ void AppSettings::drawGui()
 {
 	ui::ScopedWindow window("AppSettings");
 	ui::Checkbox("use Physics", &usePhysics);
-
+	ui::Checkbox("walking path editor", &pathEditor);
 }
 

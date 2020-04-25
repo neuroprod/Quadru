@@ -21,7 +21,7 @@ void PhysicsModel::setup(ModelConfigRef _config, PhysicsWorldRef _world) {
 	
 }
 
-void PhysicsModel::setMotorTargets(std::vector<float> targets) 
+void PhysicsModel::setMotorTargets(std::vector<float> &targets) 
 {
 	float Kp = 1.0f;
 	for (int i = 0; i < legs.size(); i++) 
@@ -34,13 +34,57 @@ void PhysicsModel::setMotorTargets(std::vector<float> targets)
 	}
 
 }
+void PhysicsModel::setDefaultAngles(std::vector<float> &targets)
+{
 
+	defaultAngles = targets;
+	for (int i = 0; i < 4; i++)
+	{
+		
+		mMultiBody->setJointPos(i * 4, targets[ i*3]);
+		mMultiBody->setJointPos(i * 4 + 1, targets[i * 3+1]);
+		mMultiBody->setJointPos(i * 4 + 2, targets[i * 3+2]);
+		mMultiBody->setJointVel(i * 4, 0.f);
+		mMultiBody->setJointVel(i * 4+1, 0.f);
+		mMultiBody->setJointVel(i * 4+2, 0.f);
+	}
+
+}
 void PhysicsModel::update()
 {
-	bodyMatrix = Conv::to(mMultiBody->getBaseWorldTransform());
+	btTransform tr = mMultiBody->getBaseWorldTransform();
 
+	
+	bodyMatrix = Conv::to(tr);
 
+	vec4 lPos = bodyMatrix * vec4(0, 0, 0, 1);
+	bodyPos =vec3( lPos);
 
+	vec4 lPosZ = bodyMatrix * vec4(0, 0,1, 1);
+	vec4 lPosX = bodyMatrix * vec4(1, 0, 0, 1);
+	vec3 lPosZN = vec3(lPosZ - lPos);
+	vec3 lPosXN = vec3(lPosX - lPos);
+	 angleX = 0;
+	angleZ= 0;
+	if (lPosZN.y < -0.001f || lPosZN.y > 0.001f) {
+
+		vec3 lPosZF = lPosZN;
+		lPosZF.y = 0;;
+		
+		 angleX = acos(glm::dot(glm::normalize(lPosZN), glm::normalize(lPosZF)));
+		 if (lPosZN.y > 0) angleX *= -1.f;
+	}
+
+	if (lPosXN.y < -0.001f || lPosXN.y > 0.001f) {
+
+		
+		vec3 lPosXF = lPosXN;
+		lPosXF.y = 0;;
+
+		angleZ = acos(glm::dot(glm::normalize(lPosXN), glm::normalize(lPosXF)));
+		if (lPosXN.y < 0) angleZ *= -1.f;
+	}
+	
 
 	int count = 0;
 	for (int i = 0; i <16; i++) 
@@ -57,17 +101,9 @@ void PhysicsModel::update()
 void PhysicsModel::rebuild()
 {
 
-
-
-
-
-
-
-	
-
 	int numLinks = 16;
 
-	float posY = config->bodyY / 1000.f + 0.01;
+	float posY = config->bodyY / 1000.f + 0.001;
 	btVector3 baseHalfExtents((config->bodyLength - config->motorHeight * 2 - 20) / 2000.f, 80.0f / 2000.f, config->bodyWidth / 2000.f);
 
 	btVector3 basePosition = btVector3(0.f, posY, 0.f);
@@ -76,7 +112,6 @@ void PhysicsModel::rebuild()
 	float baseMass = config->bodyMass;
 	if (baseMass)
 	{
-		//btCollisionShape *shape = new btSphereShape(baseHalfExtents[0]);// btBoxShape(btVector3(baseHalfExtents[0], baseHalfExtents[1], baseHalfExtents[2]));
 		btCollisionShape* shape = new btBoxShape(btVector3(baseHalfExtents[0], baseHalfExtents[1], baseHalfExtents[2]));
 		shape->calculateLocalInertia(baseMass, baseInertiaDiag);
 		delete shape;
@@ -84,7 +119,7 @@ void PhysicsModel::rebuild()
 
 	mMultiBody = new btMultiBody(numLinks, baseMass, baseInertiaDiag, false, false);
 	btQuaternion baseOriQuat(0.f, 0.f, 0.f, 1.f);
-	baseOriQuat.setEulerZYX(00.0, 0.0, 0);
+
 	mMultiBody->setBasePos(basePosition);
 	mMultiBody->setWorldToBaseRot(baseOriQuat);
 
@@ -111,8 +146,7 @@ void PhysicsModel::rebuild()
 
 	mMultiBody->setCanSleep(false);
 	mMultiBody->setHasSelfCollision(false);
-	//mbC->setUseGyroTerm(gyro);
-	//
+	
 
 	mMultiBody->setLinearDamping(0.1f);
 	mMultiBody->setAngularDamping(0.9f);
@@ -120,15 +154,16 @@ void PhysicsModel::rebuild()
 	int collisionFilterGroup = int(btBroadphaseProxy::DefaultFilter);
 	int collisionFilterMask = int(btBroadphaseProxy::AllFilter);
 
-	btCollisionShape* shape = new btBoxShape(btVector3(baseHalfExtents[0], baseHalfExtents[1], baseHalfExtents[2]));  //new btSphereShape(baseHalfExtents[0]);
+	btCollisionShape* shape = new btBoxShape(btVector3(baseHalfExtents[0], baseHalfExtents[1], baseHalfExtents[2]));  
 	btMultiBodyLinkCollider* col = new btMultiBodyLinkCollider(mMultiBody, -1);
 	col->setCollisionShape(shape);
+
 	btTransform trw;
 	trw.setIdentity();
 	trw.setOrigin(basePosition);
 
 
-	//col->setWorldTransform(trw);
+
 	world->m_dynamicsWorld->addCollisionObject(col, collisionFilterGroup, collisionFilterMask);  //, 2,1+2);
 	mMultiBody->setBaseCollider(col);
 
@@ -164,31 +199,22 @@ void PhysicsModel::rebuild()
 		tr.setIdentity();
 		tr.setOrigin(posr);
 		tr.setRotation(btQuaternion(quat[0], quat[1], quat[2], quat[3]));
-		//col->setWorldTransform(tr);
-		//       col->setFriction(friction);
-		bool isDynamic = 1;  //(linkMass > 0);
-		int collisionFilterGroup = isDynamic ? int(btBroadphaseProxy::DefaultFilter) : int(btBroadphaseProxy::StaticFilter);
-		int collisionFilterMask = isDynamic ? int(btBroadphaseProxy::AllFilter) : int(btBroadphaseProxy::AllFilter ^ btBroadphaseProxy::StaticFilter);
-
-		//if (i==0||i>numLinks-2)
-		{
-			world->m_dynamicsWorld->addCollisionObject(col, collisionFilterGroup, collisionFilterMask);  //,2,1+2);
+		linkColiders.push_back(col);
+	
+		world->m_dynamicsWorld->addCollisionObject(col, btBroadphaseProxy::DefaultFilter, btBroadphaseProxy::AllFilter); 
 
 
-			mMultiBody->getLink(i).m_collider = col;
-		}
+		mMultiBody->getLink(i).m_collider = col;
+		
 
 	}
 	float mTor = 100000.001f;
+
 	FRLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 0, 0, mTor);
-
-
 	FRLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 1, 0, mTor);
-
 	FRLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 2, 0.0, mTor);
 
 	FLLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 4, 0, mTor);
-
 	FLLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 5, 0, mTor);
 	FLLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 6, 0, mTor);
 
@@ -215,5 +241,24 @@ void PhysicsModel::rebuild()
 	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorHip1);
 	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorHip2);
 	world->m_dynamicsWorld->addMultiBodyConstraint(BLLeg->motorKnee);
+
+
+	motors.push_back(FRLeg->motorHip1);
+	motors.push_back(FRLeg->motorHip2);
+	motors.push_back(FRLeg->motorKnee);
+
+	motors.push_back(FLLeg->motorHip1);
+	motors.push_back(FLLeg->motorHip2);
+	motors.push_back(FLLeg->motorKnee);
+
+	motors.push_back(BRLeg->motorHip1);
+	motors.push_back(BRLeg->motorHip2);
+	motors.push_back(BRLeg->motorKnee);
+
+	motors.push_back(BLLeg->motorHip1);
+	motors.push_back(BLLeg->motorHip2);
+	motors.push_back(BLLeg->motorKnee);
+
+
 }
 

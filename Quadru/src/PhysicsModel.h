@@ -11,7 +11,8 @@ class PhysicsModel
 public:
 	PhysicsModel() {};
 	void setup(ModelConfigRef config, PhysicsWorldRef _world);
-	void setMotorTargets(std::vector<float> targets);
+	void setMotorTargets(std::vector<float> &targets);
+	void setDefaultAngles(std::vector<float>& targets);
 	void rebuild();
 	void update();
 
@@ -23,12 +24,18 @@ public:
 	PhysicsLegRef BRLeg;
 	PhysicsLegRef BLLeg;
 
-
+	std::vector<float> defaultAngles;
 
 	std::vector<PhysicsLegRef> legs;
-	btMultiBody* mMultiBody;
-
+	btMultiBody* mMultiBody =nullptr;
+	std::vector<btMultiBodyLinkCollider*> linkColiders;
+	std::vector< btMultiBodyJointMotor*>motors;
 
 	glm::mat4 bodyMatrix;
 	std::vector<float> angles;
+
+
+	ci::vec3 bodyPos;
+	float angleX;
+	float angleZ;
 }; 

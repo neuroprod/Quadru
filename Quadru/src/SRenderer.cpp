@@ -33,8 +33,7 @@ void SRenderer::setup(FKModelRef _model,ControleRef _controle,IKModelRef _IKmode
 	mLightCam.lookAt(mLightPos, vec3(0.0f));
 
 
-	gl::enableDepthRead();
-	gl::enableDepthWrite();
+	
 }
 void SRenderer::update() {
 
@@ -64,7 +63,8 @@ void SRenderer::drawGui(float fps) {
 ////
 void SRenderer::draw() {
 
-
+	gl::enableDepthRead();
+	gl::enableDepthWrite();
 	drawShadow();
 
 	startCamera();
@@ -188,7 +188,8 @@ void SRenderer::draw() {
 
 	stopCamera();
 
-
+	gl::disableDepthRead();
+	gl::disableDepthWrite();
 }
 void SRenderer::drawShadow() 
 {

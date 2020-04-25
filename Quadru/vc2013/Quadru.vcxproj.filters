@@ -67,6 +67,9 @@
     <Filter Include="Blocks\OpenZen\include">
       <UniqueIdentifier>{1173aa2a-46cb-4c89-a322-fbe3ee739d55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\controle\walking">
+      <UniqueIdentifier>{686631ce-f10f-45b2-90b2-f4e27ffdd239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -174,6 +177,9 @@
     <ClCompile Include="..\src\AppSettings.cpp">
       <Filter>Source Files\settings</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\PathPlanner.cpp">
+      <Filter>Source Files\controle\walking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -265,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="..\src\AppSettings.h">
       <Filter>Source Files\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PathPlanner.h">
+      <Filter>Source Files\controle\walking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
 #include "PhysicsWorld.h"
 #include "PhysicsModel.h"
 #include "AppSettings.h"
+#include "PathPlanner.h"
 #ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
 #include "IMU.h"
 #endif
@@ -43,6 +44,9 @@ class QuadruApp : public App {
 
 	PhysicsWorldRef physicsWorld;
 	PhysicsModelRef physicsModel;
+
+	PathPlannerRef pathPlaner;
+
 #ifdef CONNECT_TO_ROBOT
 		IMU imu;
 #endif
@@ -55,13 +59,6 @@ void QuadruApp::setup()
 	gl::enableVerticalSync(false);
 	setFrameRate(120);
 	ui::initialize();
-	ui::GetStyle().WindowRounding = 0.0f;
-	ui::GetStyle().ChildRounding = 0.0f;
-	ui::GetStyle().FrameRounding = 0.0f;
-	ui::GetStyle().GrabRounding = 0.0f;
-	ui::GetStyle().PopupRounding = 0.0f;
-	ui::GetStyle().ScrollbarRounding = 0.0f;
-
 
 
 	modelConfig = ModelConfig::create();
@@ -85,19 +82,12 @@ void QuadruApp::setup()
 	IKmodel = std::make_shared< IKModel>();
 	IKmodel->setup(modelConfig, controle, fkModel);
 	IKmodel->update();
-
-
-	for (int i = 0; i < IKmodel->legs.size(); i++)
-	{
-		auto IKleg = IKmodel->legs[i];
-		physicsModel->mMultiBody->setJointPos(i*4, IKleg->angleHip1);
-		physicsModel->mMultiBody->setJointPos(i * 4+1, IKleg->angleHip2);
-		physicsModel->mMultiBody->setJointPos(i * 4+2, IKleg->angleKnee);
-		
-	}
+	physicsModel->setDefaultAngles(IKmodel->angles);
 
 	
 
+	
+	pathPlaner = std::make_shared< PathPlanner>();
 
 
 
@@ -135,16 +125,22 @@ void QuadruApp::update()
 #endif
 
 	appSettings.drawGui();
+	if (appSettings.pathEditor) 
+	{
+		pathPlaner->drawGui();
+	
+	}
+	else {
 
 
-	float fps = getAverageFps();
-	renderer.drawGui(fps);
-	renderer.camera.drawGui();
-	modelConfig->drawGui();
-	controle->drawGui();
-	physicsWorld->drawGui();
-	walkControle->drawGui();
-
+		float fps = getAverageFps();
+		renderer.drawGui(fps);
+		renderer.camera.drawGui();
+		modelConfig->drawGui();
+		controle->drawGui();
+		physicsWorld->drawGui();
+		walkControle->drawGui();
+	}
 	
 
 	//console() << fkModel->rotX << " " << fkModel->rotY << " " << fkModel->rotZ << endl;
@@ -180,7 +176,10 @@ void QuadruApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) ); 
 	renderer.draw();
-	
+	if (appSettings.pathEditor)
+	{
+		pathPlaner->draw();
+	}
 }
 
 CINDER_APP(QuadruApp, RendererGl(RendererGl::Options().msaa(16)));
