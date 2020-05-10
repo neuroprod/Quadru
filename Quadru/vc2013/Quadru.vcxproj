@@ -55,7 +55,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\blocks\OpenZen\include;..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include;..\..\..\bullet3\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\blocks\serial\include;..\blocks\OpenZen\include;..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\ImGui\include;..\..\..\bullet3\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -80,7 +80,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\OpenZen\include;..\..\..\bullet3\src;..\blocks\ImGui\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\blocks\serial\include;..\include;..\..\..\cinder_master\include;..\blocks\ImGui\lib\imgui;..\blocks\OpenZen\include;..\..\..\bullet3\src;..\blocks\ImGui\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;BT_THREADSAFE=1;BT_USE_DOUBLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -96,8 +96,8 @@
       <AdditionalIncludeDirectories>"..\..\..\cinder_master\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder.lib;OpenGL32.lib;OpenZen.lib;BulletCollision_vs2010_x64_release.lib;BulletDynamics_vs2010_x64_release.lib;BulletInverseDynamicsUtils_vs2010_x64_release.lib;BulletInverseDynamics_vs2010_x64_release.lib;LinearMath_vs2010_x64_release.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\blocks\OpenZen\libs;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\;..\..\..\bullet3\bin</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cinder.lib;serial.lib;OpenGL32.lib;OpenZen.lib;BulletCollision_vs2010_x64_release.lib;BulletDynamics_vs2010_x64_release.lib;BulletInverseDynamicsUtils_vs2010_x64_release.lib;BulletInverseDynamics_vs2010_x64_release.lib;LinearMath_vs2010_x64_release.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\blocks\serial\lib\x64\Release;..\blocks\OpenZen\libs;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\;..\..\..\cinder_master\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)\;..\..\..\bullet3\bin</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
@@ -131,6 +131,8 @@
     <ClCompile Include="..\src\Mesh.cpp" />
     <ClCompile Include="..\src\MeshDataPool.cpp" />
     <ClCompile Include="..\src\ModelConfig.cpp" />
+    <ClCompile Include="..\src\Motor.cpp" />
+    <ClCompile Include="..\src\MotorControl.cpp" />
     <ClCompile Include="..\src\OrbitCamera.cpp" />
     <ClCompile Include="..\src\PathPlanner.cpp" />
     <ClCompile Include="..\src\PhysicsLeg.cpp" />
@@ -153,6 +155,10 @@
     <ClInclude Include="..\blocks\OpenZen\include\OpenZenCAPI.h" />
     <ClInclude Include="..\blocks\OpenZen\include\ZenProtocol.h" />
     <ClInclude Include="..\blocks\OpenZen\include\ZenTypes.h" />
+    <ClInclude Include="..\blocks\serial\include\serial\impl\unix.h" />
+    <ClInclude Include="..\blocks\serial\include\serial\impl\win.h" />
+    <ClInclude Include="..\blocks\serial\include\serial\serial.h" />
+    <ClInclude Include="..\blocks\serial\include\serial\v8stdint.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\blocks\ImGui\include\CinderImGui.h" />
     <ClInclude Include="..\blocks\ImGui\lib\imgui\imconfig.h" />
@@ -172,6 +178,8 @@
     <ClInclude Include="..\src\Mesh.h" />
     <ClInclude Include="..\src\MeshDataPool.h" />
     <ClInclude Include="..\src\ModelConfig.h" />
+    <ClInclude Include="..\src\Motor.h" />
+    <ClInclude Include="..\src\MotorControl.h" />
     <ClInclude Include="..\src\OrbitCamera.h" />
     <ClInclude Include="..\src\PathPlanner.h" />
     <ClInclude Include="..\src\PhysicsLeg.h" />
@@ -183,6 +191,7 @@
     <ClInclude Include="..\src\SRenderer.h" />
     <ClInclude Include="..\src\SymbolBatches.h" />
     <ClInclude Include="..\src\TorqueGraph.h" />
+    <ClInclude Include="..\src\Unions.h" />
     <ClInclude Include="..\src\WalkControle.h" />
     <ClInclude Include="..\src\WalkLeg.h" />
   </ItemGroup>

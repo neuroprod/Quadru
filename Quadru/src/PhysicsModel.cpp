@@ -217,8 +217,8 @@ void PhysicsModel::rebuild()
 		
 
 	}
-	float mTor = 100000.001f;
-
+	float mTor = 1.000f;
+	
 	FRLeg->motorHip1 = new btMultiBodyJointMotor(mMultiBody, 0, 0, mTor);
 	FRLeg->motorHip2 = new btMultiBodyJointMotor(mMultiBody, 1, 0, mTor);
 	FRLeg->motorKnee = new btMultiBodyJointMotor(mMultiBody, 2, 0.0, mTor);

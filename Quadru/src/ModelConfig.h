@@ -16,15 +16,15 @@ public:
 	bool needsRebuild = false;
 	bool isDirty = true;
 
-	float bodyY = 400;
+	float bodyY = 350;
 
-	float bodyLength = 500;
+	float bodyLength = 400;
 	float bodyWidth = 100;
 
 	float hipOffsetX = 50;
 	float hipOffsetZ = 70;
-	float upperLegLength = 300;
-	float underLegLength =300;
+	float upperLegLength = 250;
+	float underLegLength =250;
 
 	float footRadius =15;
 

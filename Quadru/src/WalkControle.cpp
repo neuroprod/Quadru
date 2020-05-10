@@ -19,11 +19,11 @@ void WalkControle::setup(ControleRef _controle, PathPlannerRef _pathPlaner)
 	legs.push_back(BRLeg);
 	legs.push_back(BLLeg);
 
-	pidX.Kp = 174;
-	pidX.Kd = 0.7;
+	pidX.Kp = 250;
+	pidX.Kd = 0;
 	pidX.inv = true;
-	pidZ.Kp = 735;
-	pidZ.Kd = 1.2;
+	pidZ.Kp = 1000;
+	pidZ.Kd = 0;
 	for (int i=0;i< 4;i++ )
 	{
 		legs[i]->pathPlaner = _pathPlaner;
@@ -34,10 +34,14 @@ void WalkControle::setup(ControleRef _controle, PathPlannerRef _pathPlaner)
 void WalkControle::update(float rotX,float rotZ) 
 {
 	float delta = 1.f / 120.f;
+	if (numSteps != 0) {
 
-	
-	controle->bodyX =40.f+ pidZ.calculate(0, rotZ);
+		heightBounce = pow(sinf((float)stepCount2 / (float)(numSteps * 2) * M_PI * 2 +bounceOffset),3.f) * bounceSize;
+		controle->bodyY = 350.f + heightBounce;
+	}
+	controle->bodyX = xOffzet + pidZ.calculate(0, rotZ);
 	controle->bodyZ = pidX.calculate(0, rotX);
+
 
 	if (currentState == MOVESTATE::STOP) 
 	{
@@ -47,6 +51,7 @@ void WalkControle::update(float rotX,float rotZ)
 			currentState = MOVESTATE::STARTWALK;
 			stepCount = 0;
 			numSteps = 0;
+			stepCount2 = 0;
 
 		}
 		else 
@@ -54,7 +59,11 @@ void WalkControle::update(float rotX,float rotZ)
 			return;
 		}
 	}
-
+	if (stepCount2 == numSteps * 2) 
+	{
+		stepCount2 = 0;
+	
+	}
 	if (stepCount == numSteps) 
 	{
 		stepCount = 0;
@@ -84,12 +93,17 @@ void WalkControle::update(float rotX,float rotZ)
 		l->update(stepCount);
 
 	}
-	stepCount++;
 	
+
+
 	for (int i =0;i<4;i++ )
 	{
 		controle->legs[i]->targetPos = controle->legs[i]->homePos + legs[i]->currentPos;
 	}
+
+	stepCount++;
+	stepCount2++;
+
 }
 
 void WalkControle::drawGui() 
@@ -97,7 +111,15 @@ void WalkControle::drawGui()
 	ui::ScopedWindow windoww("WalkControl");
 	if (ui::DragFloat("walkTime", &walkTime, 0.01, 0.1, 5));
 	if (ui::DragFloat("move Distance", &walkDistance, 1, 0, 445));
-	if (ui::Button("test")) { walkDistance = 100.0f; }
+	if (ui::DragFloat("x offset", &xOffzet, 1, -200, 200));
+	if (ui::DragFloat("	bounceOffset", &bounceOffset, 0.01, -M_PI, +M_PI));
+	if (ui::DragFloat("	bounceSize", &bounceSize, 0.1, 0,20));
+
+
+	if (ui::Button("test")) { 
+		walkDistance = 100.0f; 
+		
+	}
 	
 	pidX.drawGui("xRotation");
 	pidZ.drawGui("zRotation");

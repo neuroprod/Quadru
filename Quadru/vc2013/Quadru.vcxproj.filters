@@ -70,6 +70,18 @@
     <Filter Include="Source Files\controle\walking">
       <UniqueIdentifier>{686631ce-f10f-45b2-90b2-f4e27ffdd239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\motors">
+      <UniqueIdentifier>{cb205921-defd-4fcc-a2f1-6ec75f50dad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\serial">
+      <UniqueIdentifier>{ee95c590-9c45-4d9e-9b9c-c3f564950783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\serial\include">
+      <UniqueIdentifier>{ded2cde3-6469-441b-8956-d9453be4f4e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\serial\include\impl">
+      <UniqueIdentifier>{9b9cc144-36a9-4aa5-9c45-de8f169c6e67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -183,6 +195,12 @@
     <ClCompile Include="..\src\TorqueGraph.cpp">
       <Filter>Source Files\controle</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\MotorControl.cpp">
+      <Filter>Source Files\motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Motor.cpp">
+      <Filter>Source Files\motors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -280,6 +298,27 @@
     </ClInclude>
     <ClInclude Include="..\src\TorqueGraph.h">
       <Filter>Source Files\controle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MotorControl.h">
+      <Filter>Source Files\motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\serial\include\serial\serial.h">
+      <Filter>Blocks\serial\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\serial\include\serial\v8stdint.h">
+      <Filter>Blocks\serial\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\serial\include\serial\impl\unix.h">
+      <Filter>Blocks\serial\include\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\blocks\serial\include\serial\impl\win.h">
+      <Filter>Blocks\serial\include\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Motor.h">
+      <Filter>Source Files\motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Unions.h">
+      <Filter>Source Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-void TorqueGraph::addData(ci::vec3 FR, ci::vec3 FL, ci::vec3 BR, ci::vec3 BL, ci::vec2 stepInfo) 
+void TorqueGraph::addData(ci::vec3 FR, ci::vec3 FL, ci::vec3 BR, ci::vec3 BL, ci::vec3 stepInfo) 
 {
 	FRd.push_back(FR);
 	FLd.push_back(FL);
@@ -52,6 +52,20 @@ void TorqueGraph::draw()
 	}
 	
 	gl::popMatrices();
+
+	gl::pushMatrices();
+	gl::translate(100, 150);
+	gl::begin(GL_LINE_STRIP);
+	gl::color(ci::Color::gray(1));
+	for (int i = 0; i < step.size(); i++)
+	{
+		gl::vertex(vec2(i * 2, step[i].z));
+
+	}
+	gl::end();
+	gl::popMatrices();
+
+
 	gl::color(ci::Color(1,0,0));
 	drawGraph(FRd, 0, 100);
 	drawGraph(FLd, 0, 300);

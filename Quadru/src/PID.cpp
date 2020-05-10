@@ -50,7 +50,7 @@ void PID::drawGui(string name)
 {
 	ui::PushID(name.c_str());
 	ui::Text(name.c_str());
-    ui::DragFloat("p", &Kp, 1.0f, 0, 1000);
+    ui::DragFloat("p", &Kp, 1.0f, 0, 2000);
     ui::DragFloat("i", &Ki, 0.1f, 0, 1000);
     ui::DragFloat("d", &Kd, 0.1f, 0, 1000);
 	ui::Checkbox("invert", &inv);

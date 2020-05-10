@@ -27,13 +27,17 @@ public:
 	WalkLegRef FLLeg;
 	WalkLegRef BRLeg;
 	WalkLegRef BLLeg;
-	std::vector<WalkLegRef > legs;
 
+	std::vector<WalkLegRef > legs;
+	float xOffzet = 0;
 	MOVESTATE currentState = MOVESTATE::STOP;
 
-
+	int stepCount2 = 0;
 	int stepCount = 0;
 	int numSteps = 0;
+	float heightBounce = 0;
+	float bounceSize = 0;
+	float bounceOffset = 1.6;
 
 
 	float walkTime = 0.15;

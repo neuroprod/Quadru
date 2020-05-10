@@ -15,7 +15,7 @@
 #include "AppSettings.h"
 #include "PathPlanner.h"
 #include "TorqueGraph.h"
-
+#include "MotorControl.h"
 #ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
 #include "IMU.h"
 #endif
@@ -49,6 +49,9 @@ class QuadruApp : public App {
 
 	PathPlannerRef pathPlaner;
 	TorqueGraph torqueGraph;
+
+	MotorControl motorControl;
+
 #ifdef CONNECT_TO_ROBOT
 		IMU imu;
 #endif
@@ -97,6 +100,8 @@ void QuadruApp::setup()
 	walkControle->setup(controle, pathPlaner);
 	renderer.setup(fkModel, controle, IKmodel);
 
+	motorControl.setup();
+
 #ifdef CONNECT_TO_ROBOT
 	imu.start();
 #endif
@@ -142,11 +147,13 @@ void QuadruApp::update()
 		controle->drawGui();
 		physicsWorld->drawGui();
 		walkControle->drawGui();
+		motorControl.setGui();
 	}
 	
 
 	//console() << fkModel->rotX << " " << fkModel->rotY << " " << fkModel->rotZ << endl;
 	//walkControle->update(fkModel->rotX);
+	
 	walkControle->update(physicsModel->angleX, physicsModel->angleZ);
 
 	controle->update();
@@ -165,7 +172,7 @@ void QuadruApp::update()
 		physicsWorld->update();
 		physicsModel->updateData();
 		fkModel->setPosition(physicsModel->bodyMatrix, physicsModel->angles);
-		torqueGraph.addData(physicsModel->FRLeg->torque, physicsModel->FLLeg->torque, physicsModel->BRLeg->torque, physicsModel->BLLeg->torque,vec2( (float)walkControle->stepCount, (float)walkControle->FRLeg->stepState));
+		torqueGraph.addData(physicsModel->FRLeg->torque, physicsModel->FLLeg->torque, physicsModel->BRLeg->torque, physicsModel->BLLeg->torque,vec3( (float)walkControle->stepCount, (float)walkControle->FRLeg->stepState, walkControle->heightBounce));
 	}
 
 	fkModel->update();
