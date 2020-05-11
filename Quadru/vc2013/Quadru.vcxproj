@@ -124,6 +124,9 @@
     <ClCompile Include="..\src\FKLeg.cpp" />
     <ClCompile Include="..\src\FKModel.cpp" />
     <ClCompile Include="..\src\FKNode.cpp" />
+    <ClCompile Include="..\src\Graph.cpp" />
+    <ClCompile Include="..\src\GraphDataArray.cpp" />
+    <ClCompile Include="..\src\GraphDataFloat.cpp" />
     <ClCompile Include="..\src\IKLeg.cpp" />
     <ClCompile Include="..\src\IKModel.cpp" />
     <ClCompile Include="..\src\IMU.cpp" />
@@ -171,6 +174,10 @@
     <ClInclude Include="..\src\FKLeg.h" />
     <ClInclude Include="..\src\FKModel.h" />
     <ClInclude Include="..\src\FKNode.h" />
+    <ClInclude Include="..\src\Graph.h" />
+    <ClInclude Include="..\src\GraphData.h" />
+    <ClInclude Include="..\src\GraphDataArray.h" />
+    <ClInclude Include="..\src\GraphDataFloat.h" />
     <ClInclude Include="..\src\IKLeg.h" />
     <ClInclude Include="..\src\IKModel.h" />
     <ClInclude Include="..\src\IMU.h" />

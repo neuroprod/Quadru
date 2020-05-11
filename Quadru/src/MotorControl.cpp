@@ -13,7 +13,7 @@ void MotorControl::setup()
 	motors.push_back(FRHip);	
 }
 
-void MotorControl::setGui()
+void MotorControl::drawGui()
 {
 	ui::ScopedWindow window("Motor");
 

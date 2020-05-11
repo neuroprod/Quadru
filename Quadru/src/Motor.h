@@ -27,7 +27,11 @@ class Motor {
 	bool connectionFailed = false;
 
 	float angleTarget = 0;
-	float speedTarget = 25000;
+	float speedTarget = 100000;
+	float prevAngleTarget = 0;
+	float kpTarget = 580;
+	float kp = kpTarget;
+	ci::vec4 motorData;
 public:
 	Motor() {};
 
@@ -37,6 +41,8 @@ public:
 	
 	void setMotorAngle(float angle);
 	void setMotorMaxSpeed(float speed);
+	ci::vec4 getData();
+	
 	///////////////////////
 	
 

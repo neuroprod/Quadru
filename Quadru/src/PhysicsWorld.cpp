@@ -68,8 +68,8 @@ void PhysicsWorld::update() {
 	if (!play && !step) return;
 
 	step = false;
-	m_dynamicsWorld->stepSimulation(1. / 120, 0);
-	//m_dynamicsWorld->stepSimulation(1. / 240, 100);
+	m_dynamicsWorld->stepSimulation(1. / 240, 0);
+	m_dynamicsWorld->stepSimulation(1. / 240, 0);
 	hasUpdate = true;
 };
 

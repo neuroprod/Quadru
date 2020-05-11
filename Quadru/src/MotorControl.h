@@ -9,7 +9,7 @@ class MotorControl
 public:
 	MotorControl() {}
 	void setup();
-	void setGui();
+	void drawGui();
 	std::vector<MotorRef> motors;
 
 

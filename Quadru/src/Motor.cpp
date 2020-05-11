@@ -62,6 +62,7 @@ void Motor::loop()
         inMutex.lock();
         float maxSpeed = motorSpeed; 
         float  angleTarget = motorAngle;
+        float  kpR = kp;
         inMutex.unlock();
 
         //speed = dps*100
@@ -69,7 +70,12 @@ void Motor::loop()
         uint32_t speedR= maxSpeed;
         int64_t  angleR = (angleTarget + 180.f) * 100.f * 6.f;
 
-
+        float angleChange = abs(prevAngleTarget - angleTarget);
+        uint32_t speed = angleChange *60 * kpR;
+        if (speed < speedR && speed !=0)speedR = speed;
+        console() << angleChange <<" "<< speed << " " << speedR << endl;
+        prevAngleTarget = angleTarget;
+        
 
         setPosition(id, angleR, speedR);
 
@@ -95,9 +101,11 @@ void Motor::loop()
         Uencoder.b[0] = buffer[10];
         Uencoder.b[1] = buffer[11];
 
-
-
-
+        outMutex.lock();
+        motorData.x = Utorque.r;
+        motorData.y = Uspeed.r;
+        motorData.z = Uencoder.r;
+        outMutex.unlock();
        // console() << (float)Utorque.r / 2048.f * 33.f << " " << (float)Uspeed.r << " " << (float)Uencoder.r << endl;
     }
 }
@@ -111,6 +119,7 @@ void Motor::drawGui()
       
         if (ImGui::SliderFloat("motorAngle", &angleTarget, -180.f, 180.f)) { setMotorAngle(angleTarget); }
         if (ImGui::SliderFloat("motorSpeed", &speedTarget, 0.f, 200000.f)) { setMotorMaxSpeed(speedTarget); }
+        if (ImGui::SliderFloat("motorKp", &kpTarget, 0.f, 2000.f)) { inMutex.lock(); kp = kpTarget;     inMutex.unlock();}
     }
     ImGui::PopID();
 }
@@ -132,7 +141,14 @@ void Motor::setMotorMaxSpeed(float target)
     inMutex.unlock();
 }
 
-
+vec4 Motor::getData() 
+{
+    vec4 data;
+    outMutex.lock();
+    data = motorData;
+    outMutex.unlock();
+    return data;
+}
 
 
 //////////////////////////////////////////////////////////

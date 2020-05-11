@@ -82,6 +82,9 @@
     <Filter Include="Blocks\serial\include\impl">
       <UniqueIdentifier>{9b9cc144-36a9-4aa5-9c45-de8f169c6e67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graph">
+      <UniqueIdentifier>{739317ee-526d-419c-98de-a063452cb10e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\QuadruApp.cpp">
@@ -201,6 +204,15 @@
     <ClCompile Include="..\src\Motor.cpp">
       <Filter>Source Files\motors</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Graph.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GraphDataFloat.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GraphDataArray.cpp">
+      <Filter>Source Files\graph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -319,6 +331,18 @@
     </ClInclude>
     <ClInclude Include="..\src\Unions.h">
       <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graph.h">
+      <Filter>Source Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GraphData.h">
+      <Filter>Source Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GraphDataFloat.h">
+      <Filter>Source Files\graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GraphDataArray.h">
+      <Filter>Source Files\graph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

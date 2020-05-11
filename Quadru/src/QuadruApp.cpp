@@ -16,6 +16,7 @@
 #include "PathPlanner.h"
 #include "TorqueGraph.h"
 #include "MotorControl.h"
+#include "Graph.h"
 #ifdef CONNECT_TO_ROBOT  //QuadruDefines.h
 #include "IMU.h"
 #endif
@@ -42,7 +43,7 @@ class QuadruApp : public App {
 	ControleRef controle;
 	WalkControleRef walkControle;
 	IKModelRef IKmodel;
-	
+	Graph graph;
 
 	PhysicsWorldRef physicsWorld;
 	PhysicsModelRef physicsModel;
@@ -102,6 +103,12 @@ void QuadruApp::setup()
 
 	motorControl.setup();
 
+
+	graph.prepData("sin", 1.f, 1);
+	graph.prepData("motor", 3, vector<float>({1.f,0.1f,1.f/500.f}), vector<Color>({ Color(1,0,0),Color(0,1,0),Color(0,0,1) }),vector<string>({ "torque","speed","encoder" }));
+
+
+
 #ifdef CONNECT_TO_ROBOT
 	imu.start();
 #endif
@@ -147,7 +154,8 @@ void QuadruApp::update()
 		controle->drawGui();
 		physicsWorld->drawGui();
 		walkControle->drawGui();
-		motorControl.setGui();
+		motorControl.drawGui();
+		graph.drawGui();
 	}
 	
 
@@ -167,6 +175,8 @@ void QuadruApp::update()
 	}
 	else 
 	{
+		motorControl.motors[0] ->setMotorAngle(IKmodel->angles[2]/3.1415*180);
+
 		physicsModel->setMotorTargets( IKmodel->angles);
 		
 		physicsWorld->update();
@@ -176,7 +186,11 @@ void QuadruApp::update()
 	}
 
 	fkModel->update();
+	graph.addData("sin", IKmodel->angles[2] / 3.1415 * 180);
+	vec4 m = motorControl.motors[0]->getData();
+	graph.addData("motor", vector<float>({ m.x,m.y,m.z }));
 	
+
 	renderer.update(physicsModel->bodyPos);
 	
 }
@@ -186,6 +200,7 @@ void QuadruApp::draw()
 	gl::clear( Color( 0, 0, 0 ) ); 
 	renderer.draw();
 	torqueGraph.draw();
+	graph.draw();
 	if (appSettings.pathEditor)
 	{
 		pathPlaner->draw();
