@@ -16,17 +16,17 @@ public:
 	bool needsRebuild = false;
 	bool isDirty = true;
 
-	float bodyY = 350;
+	float bodyY = 352;
 
-	float bodyLength = 400;
-	float bodyWidth = 100;
+	float bodyLength = 352;
+	float bodyWidth = 120;
 
-	float hipOffsetX = 50;
-	float hipOffsetZ = 70;
-	float upperLegLength = 250;
+	float hipOffsetX = 60;
+	float hipOffsetZ = 74;
+	float upperLegLength = 210;
 	float underLegLength =250;
 
-	float footRadius =15;
+	float footRadius =20;
 
 	float bodyMass = 4.f;
 	ci::vec3 bodyCOM = ci::vec3(0, 0, 0);
